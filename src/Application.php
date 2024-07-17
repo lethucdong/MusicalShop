@@ -148,7 +148,8 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
     {
         $controller = $request->getParam('controller');
    
-        $controllerForUser = ['Users'];
+        //users
+        $controllerForUser = [''];
         if (in_array($controller, $controllerForUser)) 
         {
             $authenticationService = new AuthenticationService([
