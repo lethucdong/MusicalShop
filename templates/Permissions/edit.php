@@ -25,11 +25,11 @@
                     echo $this->Form->control('module_function');
                     echo $this->Form->control('name');
                     echo $this->Form->control('description');
-                    echo $this->Form->control('created_at', ['empty' => true]);
-                    echo $this->Form->control('created_by');
-                    echo $this->Form->control('updated_at', ['empty' => true]);
-                    echo $this->Form->control('updated_by');
-                    echo $this->Form->control('delete_flg');
+                    //echo $this->Form->control('created_at', ['empty' => true]);
+                    //echo $this->Form->control('created_by');
+                    //echo $this->Form->control('updated_at', ['empty' => true]);
+                    //echo $this->Form->control('updated_by');
+                    //echo $this->Form->control('delete_flg');
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

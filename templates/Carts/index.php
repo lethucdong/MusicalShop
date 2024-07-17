@@ -17,7 +17,7 @@
                     <th><?= $this->Paginator->sort('created_by') ?></th>
                     <th><?= $this->Paginator->sort('updated_at') ?></th>
                     <th><?= $this->Paginator->sort('updated_by') ?></th>
-                    <th><?= $this->Paginator->sort('delete_flg') ?></th>
+                    <!-- <th><?= $this->Paginator->sort('delete_flg') ?></th> -->
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -30,7 +30,7 @@
                     <td><?= h($cart->created_by) ?></td>
                     <td><?= h($cart->updated_at) ?></td>
                     <td><?= h($cart->updated_by) ?></td>
-                    <td><?= h($cart->delete_flg) ?></td>
+                    <!-- <td><?= h($cart->delete_flg) ?></td> -->
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $cart->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $cart->id]) ?>

@@ -2,7 +2,8 @@
 declare(strict_types=1);
 
 namespace App\Controller;
-
+use App\Helper\TimeHelper;
+use App\Helper\IdentityHelper;
 /**
  * Carts Controller
  *
@@ -11,6 +12,14 @@ namespace App\Controller;
  */
 class CartsController extends AppController
 {
+    private $currentAdmin;
+
+    public function initialize(): void
+    {
+        parent::initialize();
+        $this->currentAdmin = IdentityHelper::getIdentity($this->request);
+    }
+    
     /**
      * Index method
      *
@@ -53,6 +62,11 @@ class CartsController extends AppController
         $cart = $this->Carts->newEmptyEntity();
         if ($this->request->is('post')) {
             $cart = $this->Carts->patchEntity($cart, $this->request->getData());
+            $cart->delete_flg = 0;
+            $cart->created_by =  $this->currentAdmin->username;
+            $cart->created_at = TimeHelper::getCurrentTime();
+            $cart->updated_by =  $this->currentAdmin->username;
+            $cart->updated_at = TimeHelper::getCurrentTime();
             if ($this->Carts->save($cart)) {
                 $this->Flash->success(__('The cart has been saved.'));
 
@@ -78,6 +92,8 @@ class CartsController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $cart = $this->Carts->patchEntity($cart, $this->request->getData());
+            $cart->updated_by =  $this->currentAdmin->username;
+            $cart->updated_at = TimeHelper::getCurrentTime();
             if ($this->Carts->save($cart)) {
                 $this->Flash->success(__('The cart has been saved.'));
 
@@ -103,6 +119,8 @@ class CartsController extends AppController
         if($cart)
         {
             $cart->delete_flg = 1; 
+            $cart->updated_by =  $this->currentAdmin->username;
+            $cart->updated_at = TimeHelper::getCurrentTime();
             if ($this->Carts->save($cart)) {
                 $this->Flash->success(__('The cart has been deleted.'));
             } else {

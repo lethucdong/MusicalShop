@@ -459,8 +459,8 @@ class AllSeed extends AbstractSeed
             [
                 'id' => 1,
                 'username' => 'admin1',
-                'password' => 'hashed_admin_password_1',
-                'email' => 'admin1@example.com',
+                'password' => '$2y$10$IGdNsR9Sqzuzz/ZBulW7aej1WPyrZGAPabmoSaB0PxLVJhB3XXuOO',
+                'email' => 'admin@gmail.com',
                 'birthday' => '1980-01-01 00:00:00',
                 'sex' => 1,
                 'phone' => '111111111',

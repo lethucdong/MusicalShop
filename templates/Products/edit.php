@@ -32,11 +32,11 @@
                     echo $this->Form->control('type');
                     echo $this->Form->control('start_date');
                     echo $this->Form->control('end_date');
-                    echo $this->Form->control('created_at');
-                    echo $this->Form->control('created_by');
-                    echo $this->Form->control('updated_at');
-                    echo $this->Form->control('updated_by');
-                    echo $this->Form->control('delete_flg');
+                    //echo $this->Form->control('created_at');
+                    //echo $this->Form->control('created_by');
+                    //echo $this->Form->control('updated_at');
+                    //echo $this->Form->control('updated_by');
+                    //echo $this->Form->control('delete_flg');
                     echo $this->Form->control('category_id', ['options' => $categories]);
                     echo $this->Form->control('brand_id', ['options' => $brands]);
                 ?>

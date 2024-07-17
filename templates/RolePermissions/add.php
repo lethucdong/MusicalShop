@@ -21,11 +21,11 @@
                 <?php
                     echo $this->Form->control('role_id', ['options' => $roles]);
                     echo $this->Form->control('permission_id', ['options' => $permissions]);
-                    echo $this->Form->control('created_at');
-                    echo $this->Form->control('created_by');
-                    echo $this->Form->control('updated_at');
-                    echo $this->Form->control('updated_by');
-                    echo $this->Form->control('delete_flg');
+                    //echo $this->Form->control('created_at');
+                    //echo $this->Form->control('created_by');
+                    //echo $this->Form->control('updated_at');
+                    //echo $this->Form->control('updated_by');
+                    //echo $this->Form->control('delete_flg');
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

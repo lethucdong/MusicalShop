@@ -18,7 +18,7 @@
                     <th><?= $this->Paginator->sort('created_by') ?></th>
                     <th><?= $this->Paginator->sort('updated_at') ?></th>
                     <th><?= $this->Paginator->sort('updated_by') ?></th>
-                    <th><?= $this->Paginator->sort('delete_flg') ?></th>
+                    <!-- <th><?= $this->Paginator->sort('delete_flg') ?></th> -->
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -32,7 +32,7 @@
                     <td><?= h($rolePermission->created_by) ?></td>
                     <td><?= h($rolePermission->updated_at) ?></td>
                     <td><?= h($rolePermission->updated_by) ?></td>
-                    <td><?= h($rolePermission->delete_flg) ?></td>
+                    <!-- <td><?= h($rolePermission->delete_flg) ?></td> -->
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $rolePermission->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $rolePermission->id]) ?>

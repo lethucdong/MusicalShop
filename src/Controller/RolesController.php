@@ -2,6 +2,8 @@
 declare(strict_types=1);
 
 namespace App\Controller;
+use App\Helper\TimeHelper;
+use App\Helper\IdentityHelper;
 
 /**
  * Roles Controller
@@ -11,6 +13,14 @@ namespace App\Controller;
  */
 class RolesController extends AppController
 {
+    private $currentAdmin;
+
+    public function initialize(): void
+    {
+        parent::initialize();
+        $this->currentAdmin = IdentityHelper::getIdentity($this->request);
+    }
+
     /**
      * Index method
      *
@@ -23,6 +33,7 @@ class RolesController extends AppController
         $roles = $this->paginate($query);
 
         $this->set(compact('roles'));
+
     }
 
     /**
@@ -51,6 +62,12 @@ class RolesController extends AppController
         $role = $this->Roles->newEmptyEntity();
         if ($this->request->is('post')) {
             $role = $this->Roles->patchEntity($role, $this->request->getData());
+            $role->delete_flg = 0;
+            $role->created_by =  $this->currentAdmin->username;
+            $role->created_at = TimeHelper::getCurrentTime();
+            $role->updated_by =  $this->currentAdmin->username;
+            $role->updated_at = TimeHelper::getCurrentTime();
+
             if ($this->Roles->save($role)) {
                 $this->Flash->success(__('The role has been saved.'));
 
@@ -75,6 +92,10 @@ class RolesController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $role = $this->Roles->patchEntity($role, $this->request->getData());
+
+            $role->updated_by =  $this->currentAdmin->username;
+            $role->updated_at = TimeHelper::getCurrentTime();
+
             if ($this->Roles->save($role)) {
                 $this->Flash->success(__('The role has been saved.'));
 
@@ -99,6 +120,9 @@ class RolesController extends AppController
         if($role)
         {
             $role->delete_flg = 1;
+            $role->updated_by =  $this->currentAdmin->username;
+            $role->updated_at = TimeHelper::getCurrentTime();
+            
             if ($this->Roles->save($role)) {
                 $this->Flash->success(__('The role has been deleted.'));
             } else {

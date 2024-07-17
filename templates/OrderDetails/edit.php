@@ -26,11 +26,11 @@
                 <?php
                     echo $this->Form->control('price');
                     echo $this->Form->control('quantity');
-                    echo $this->Form->control('created_at');
-                    echo $this->Form->control('created_by');
-                    echo $this->Form->control('updated_at', ['empty' => true]);
-                    echo $this->Form->control('updated_by');
-                    echo $this->Form->control('delete_flg');
+                    //echo $this->Form->control('created_at');
+                    //echo $this->Form->control('created_by');
+                    //echo $this->Form->control('updated_at', ['empty' => true]);
+                    //echo $this->Form->control('updated_by');
+                    //echo $this->Form->control('delete_flg');
                     echo $this->Form->control('product_id', ['options' => $products]);
                     echo $this->Form->control('order_id', ['options' => $orders]);
                 ?>

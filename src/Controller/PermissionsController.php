@@ -2,7 +2,8 @@
 declare(strict_types=1);
 
 namespace App\Controller;
-
+use App\Helper\TimeHelper;
+use App\Helper\IdentityHelper;
 /**
  * Permissions Controller
  *
@@ -11,6 +12,14 @@ namespace App\Controller;
  */
 class PermissionsController extends AppController
 {
+    private $currentAdmin;
+
+    public function initialize(): void
+    {
+        parent::initialize();
+        $this->currentAdmin = IdentityHelper::getIdentity($this->request);
+    }
+    
     /**
      * Index method
      *
@@ -50,6 +59,11 @@ class PermissionsController extends AppController
         $permission = $this->Permissions->newEmptyEntity();
         if ($this->request->is('post')) {
             $permission = $this->Permissions->patchEntity($permission, $this->request->getData());
+            $permission->delete_flg = 0;
+            $permission->created_by =  $this->currentAdmin->username;
+            $permission->created_at = TimeHelper::getCurrentTime();
+            $permission->updated_by =  $this->currentAdmin->username;
+            $permission->updated_at = TimeHelper::getCurrentTime();
             if ($this->Permissions->save($permission)) {
                 $this->Flash->success(__('The permission has been saved.'));
 
@@ -74,6 +88,8 @@ class PermissionsController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $permission = $this->Permissions->patchEntity($permission, $this->request->getData());
+            $permission->updated_by =  $this->currentAdmin->username;
+            $permission->updated_at = TimeHelper::getCurrentTime();
             if ($this->Permissions->save($permission)) {
                 $this->Flash->success(__('The permission has been saved.'));
 
@@ -98,6 +114,8 @@ class PermissionsController extends AppController
         if($permission)
         {
             $permission->delete_flg = 1;
+            $permission->updated_by =  $this->currentAdmin->username;
+            $permission->updated_at = TimeHelper::getCurrentTime();
             if ($this->Permissions->save($permission)) {
                 $this->Flash->success(__('The permission has been deleted.'));
             } else {

@@ -26,11 +26,11 @@
                     echo $this->Form->control('phone');
                     echo $this->Form->control('address');
                     echo $this->Form->control('full_name');
-                    echo $this->Form->control('created_at');
-                    echo $this->Form->control('created_by');
-                    echo $this->Form->control('updated_at', ['empty' => true]);
-                    echo $this->Form->control('updated_by');
-                    echo $this->Form->control('delete_flg');
+                    //echo $this->Form->control('created_at');
+                    //echo $this->Form->control('created_by');
+                    //echo $this->Form->control('updated_at', ['empty' => true]);
+                    //echo $this->Form->control('updated_by');
+                    //echo $this->Form->control('delete_flg');
                     echo $this->Form->control('role_id', ['options' => $roles]);
                 ?>
             </fieldset>

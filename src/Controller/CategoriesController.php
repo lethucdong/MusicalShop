@@ -2,7 +2,8 @@
 declare(strict_types=1);
 
 namespace App\Controller;
-
+use App\Helper\TimeHelper;
+use App\Helper\IdentityHelper;
 /**
  * Categories Controller
  *
@@ -11,6 +12,14 @@ namespace App\Controller;
  */
 class CategoriesController extends AppController
 {
+    private $currentAdmin;
+
+    public function initialize(): void
+    {
+        parent::initialize();
+        $this->currentAdmin = IdentityHelper::getIdentity($this->request);
+    }
+    
     /**
      * Index method
      *
@@ -50,6 +59,11 @@ class CategoriesController extends AppController
         $category = $this->Categories->newEmptyEntity();
         if ($this->request->is('post')) {
             $category = $this->Categories->patchEntity($category, $this->request->getData());
+            $category->delete_flg = 0;
+            $category->created_by =  $this->currentAdmin->username;
+            $category->created_at = TimeHelper::getCurrentTime();
+            $category->updated_by =  $this->currentAdmin->username;
+            $category->updated_at = TimeHelper::getCurrentTime();
             if ($this->Categories->save($category)) {
                 $this->Flash->success(__('The category has been saved.'));
 
@@ -74,6 +88,8 @@ class CategoriesController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $category = $this->Categories->patchEntity($category, $this->request->getData());
+            $category->updated_by =  $this->currentAdmin->username;
+            $category->updated_at = TimeHelper::getCurrentTime();
             if ($this->Categories->save($category)) {
                 $this->Flash->success(__('The category has been saved.'));
 
@@ -98,6 +114,8 @@ class CategoriesController extends AppController
         if($category)
         {
             $category->delete_flg = 1; 
+            $category->updated_by =  $this->currentAdmin->username;
+            $category->updated_at = TimeHelper::getCurrentTime();
             if ($this->Categories->save($category)) {
                 $this->Flash->success(__('The category has been deleted.'));
             } else {

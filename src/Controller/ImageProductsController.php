@@ -2,7 +2,8 @@
 declare(strict_types=1);
 
 namespace App\Controller;
-
+use App\Helper\TimeHelper;
+use App\Helper\IdentityHelper;
 /**
  * ImageProducts Controller
  *
@@ -11,18 +12,20 @@ namespace App\Controller;
  */
 class ImageProductsController extends AppController
 {
+    private $currentAdmin;
+
     public function initialize(): void
     {
         parent::initialize();
-
-        // Load the ImageProducts model
         $this->loadModel('ImageProducts');
 
         // Check if the ImageProducts model is null and handle it
         if ($this->ImageProducts === null) {
             throw new \RuntimeException('ImageProducts model could not be loaded.');
         }
+        $this->currentAdmin = IdentityHelper::getIdentity($this->request);
     }
+
     /**
      * Index method
      *
@@ -66,6 +69,11 @@ class ImageProductsController extends AppController
         $imageProduct = $this->ImageProducts->newEmptyEntity();
         if ($this->request->is('post')) {
             $imageProduct = $this->ImageProducts->patchEntity($imageProduct, $this->request->getData());
+            $imageProduct->delete_flg = 0;
+            $imageProduct->created_by =  $this->currentAdmin->username;
+            $imageProduct->created_at = TimeHelper::getCurrentTime();
+            $imageProduct->updated_by =  $this->currentAdmin->username;
+            $imageProduct->updated_at = TimeHelper::getCurrentTime();
             if ($this->ImageProducts->save($imageProduct)) {
                 $this->Flash->success(__('The image product has been saved.'));
 
@@ -91,6 +99,8 @@ class ImageProductsController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $imageProduct = $this->ImageProducts->patchEntity($imageProduct, $this->request->getData());
+            $imageProduct->updated_by =  $this->currentAdmin->username;
+            $imageProduct->updated_at = TimeHelper::getCurrentTime();
             if ($this->ImageProducts->save($imageProduct)) {
                 $this->Flash->success(__('The image product has been saved.'));
 
@@ -116,6 +126,8 @@ class ImageProductsController extends AppController
         if($imageProduct)
         {
             $imageProduct->delete_flg = 1;
+            $imageProduct->updated_by =  $this->currentAdmin->username;
+            $imageProduct->updated_at = TimeHelper::getCurrentTime();
             if ($this->ImageProducts->save($imageProduct)) {
                 $this->Flash->success(__('The image product has been deleted.'));
             } else {

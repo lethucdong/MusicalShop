@@ -2,7 +2,8 @@
 declare(strict_types=1);
 
 namespace App\Controller;
-
+use App\Helper\TimeHelper;
+use App\Helper\IdentityHelper;
 /**
  * Properties Controller
  *
@@ -11,6 +12,14 @@ namespace App\Controller;
  */
 class PropertiesController extends AppController
 {
+    private $currentAdmin;
+
+    public function initialize(): void
+    {
+        parent::initialize();
+        $this->currentAdmin = IdentityHelper::getIdentity($this->request);
+    }
+    
     /**
      * Index method
      *
@@ -54,6 +63,11 @@ class PropertiesController extends AppController
         $property = $this->Properties->newEmptyEntity();
         if ($this->request->is('post')) {
             $property = $this->Properties->patchEntity($property, $this->request->getData());
+            $property->delete_flg = 0;
+            $property->created_by =  $this->currentAdmin->username;
+            $property->created_at = TimeHelper::getCurrentTime();
+            $property->updated_by =  $this->currentAdmin->username;
+            $property->updated_at = TimeHelper::getCurrentTime();
             if ($this->Properties->save($property)) {
                 $this->Flash->success(__('The property has been saved.'));
 
@@ -79,6 +93,8 @@ class PropertiesController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $property = $this->Properties->patchEntity($property, $this->request->getData());
+            $property->updated_by =  $this->currentAdmin->username;
+            $property->updated_at = TimeHelper::getCurrentTime();
             if ($this->Properties->save($property)) {
                 $this->Flash->success(__('The property has been saved.'));
 
@@ -104,6 +120,8 @@ class PropertiesController extends AppController
         if($property)
         {
             $property->delete_flg = 1;
+            $property->updated_by =  $this->currentAdmin->username;
+            $property->updated_at = TimeHelper::getCurrentTime();
             if ($this->Properties->save($property)) {
                 $this->Flash->success(__('The property has been deleted.'));
             } else {

@@ -2,7 +2,8 @@
 declare(strict_types=1);
 
 namespace App\Controller;
-
+use App\Helper\TimeHelper;
+use App\Helper\IdentityHelper;
 /**
  * RolePermissions Controller
  *
@@ -11,6 +12,14 @@ namespace App\Controller;
  */
 class RolePermissionsController extends AppController
 {
+    private $currentAdmin;
+
+    public function initialize(): void
+    {
+        parent::initialize();
+        $this->currentAdmin = IdentityHelper::getIdentity($this->request);
+    }
+    
     /**
      * Index method
      *
@@ -54,6 +63,11 @@ class RolePermissionsController extends AppController
         $rolePermission = $this->RolePermissions->newEmptyEntity();
         if ($this->request->is('post')) {
             $rolePermission = $this->RolePermissions->patchEntity($rolePermission, $this->request->getData());
+            $rolePermission->delete_flg = 0;
+            $rolePermission->created_by =  $this->currentAdmin->username;
+            $rolePermission->created_at = TimeHelper::getCurrentTime();
+            $rolePermission->updated_by =  $this->currentAdmin->username;
+            $rolePermission->updated_at = TimeHelper::getCurrentTime();
             if ($this->RolePermissions->save($rolePermission)) {
                 $this->Flash->success(__('The role permission has been saved.'));
 
@@ -80,6 +94,8 @@ class RolePermissionsController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $rolePermission = $this->RolePermissions->patchEntity($rolePermission, $this->request->getData());
+            $rolePermission->updated_by =  $this->currentAdmin->username;
+            $rolePermission->updated_at = TimeHelper::getCurrentTime();
             if ($this->RolePermissions->save($rolePermission)) {
                 $this->Flash->success(__('The role permission has been saved.'));
 
@@ -106,6 +122,8 @@ class RolePermissionsController extends AppController
         if($rolePermission)
         {
             $rolePermission->delete_flg = 1;
+            $rolePermission->updated_by =  $this->currentAdmin->username;
+            $rolePermission->updated_at = TimeHelper::getCurrentTime();
             if ($this->RolePermissions->save($rolePermission)) {
                 $this->Flash->success(__('The role permission has been deleted.'));
             } else {

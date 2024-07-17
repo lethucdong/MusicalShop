@@ -2,7 +2,8 @@
 declare(strict_types=1);
 
 namespace App\Controller;
-
+use App\Helper\TimeHelper;
+use App\Helper\IdentityHelper;
 /**
  * Users Controller
  *
@@ -11,6 +12,14 @@ namespace App\Controller;
  */
 class UsersController extends AppController
 {
+    private $currentAdmin;
+
+    public function initialize(): void
+    {
+        parent::initialize();
+        $this->currentAdmin = IdentityHelper::getIdentity($this->request);
+    }
+    
     /**
      * Index method
      *
@@ -51,6 +60,11 @@ class UsersController extends AppController
         $user = $this->Users->newEmptyEntity();
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
+            $user->delete_flg = 0;
+            $user->created_by =  $this->currentAdmin->username;
+            $user->created_at = TimeHelper::getCurrentTime();
+            $user->updated_by =  $this->currentAdmin->username;
+            $user->updated_at = TimeHelper::getCurrentTime();
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
 
@@ -75,6 +89,8 @@ class UsersController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
+            $user->updated_by =  $this->currentAdmin->username;
+            $user->updated_at = TimeHelper::getCurrentTime();
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
 
@@ -99,6 +115,8 @@ class UsersController extends AppController
         if($user)
         {
             $user->delete_flg = 1;
+            $user->updated_by =  $this->currentAdmin->username;
+            $user->updated_at = TimeHelper::getCurrentTime();
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been deleted.'));
             } else {

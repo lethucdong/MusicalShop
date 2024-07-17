@@ -23,7 +23,7 @@
                     <th><?= $this->Paginator->sort('created_by') ?></th>
                     <th><?= $this->Paginator->sort('updated_at') ?></th>
                     <th><?= $this->Paginator->sort('updated_by') ?></th>
-                    <th><?= $this->Paginator->sort('delete_flg') ?></th>
+                    <!-- <th><?= $this->Paginator->sort('delete_flg') ?></th> -->
                     <th><?= $this->Paginator->sort('category_id') ?></th>
                     <th><?= $this->Paginator->sort('brand_id') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
@@ -44,7 +44,7 @@
                     <td><?= h($product->created_by) ?></td>
                     <td><?= h($product->updated_at) ?></td>
                     <td><?= h($product->updated_by) ?></td>
-                    <td><?= h($product->delete_flg) ?></td>
+                    <!-- <td><?= h($product->delete_flg) ?></td> -->
                     <td><?= $product->has('category') ? $this->Html->link($product->category->name, ['controller' => 'Categories', 'action' => 'view', $product->category->id]) : '' ?></td>
                     <td><?= $product->has('brand') ? $this->Html->link($product->brand->name, ['controller' => 'Brands', 'action' => 'view', $product->brand->id]) : '' ?></td>
                     <td class="actions">

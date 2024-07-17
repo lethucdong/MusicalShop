@@ -147,7 +147,7 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
     public function getAuthenticationService(ServerRequestInterface $request): AuthenticationServiceInterface
     {
         $authenticationService = new AuthenticationService([
-            'unauthenticatedRedirect' => Router::url('/users/login'),
+            'unauthenticatedRedirect' => Router::url('/adminUsers/login'),
             'queryParam' => 'redirect',
         ]);
         // Load identifiers, ensure we check email and password fields
@@ -155,7 +155,11 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
             'fields' => [
                 'username' => 'email',
                 'password' => 'password',
-            ]
+            ],
+            'resolver' => [
+                    'className' => 'Authentication.Orm',
+                    'userModel' => 'AdminUsers' // Đây là tên của model trong CakePHP
+                ],
         ]);
 
         // Load the authenticators, you want session first
@@ -166,7 +170,7 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
                 'username' => 'email',
                 'password' => 'password',
             ],
-            'loginUrl' => Router::url('/users/login'),
+            'loginUrl' => Router::url('/adminUsers/login'),
         ]);
 
         return $authenticationService;

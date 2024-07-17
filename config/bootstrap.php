@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+ob_start();
 
 /**
  * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)

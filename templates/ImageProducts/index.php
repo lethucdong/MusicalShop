@@ -20,7 +20,7 @@
                     <th><?= $this->Paginator->sort('created_by') ?></th>
                     <th><?= $this->Paginator->sort('updated_at') ?></th>
                     <th><?= $this->Paginator->sort('updated_by') ?></th>
-                    <th><?= $this->Paginator->sort('delete_flg') ?></th>
+                    <!-- <th><?= $this->Paginator->sort('delete_flg') ?></th> -->
                     <th><?= $this->Paginator->sort('product_id') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
@@ -37,7 +37,7 @@
                     <td><?= h($imageProduct->created_by) ?></td>
                     <td><?= h($imageProduct->updated_at) ?></td>
                     <td><?= h($imageProduct->updated_by) ?></td>
-                    <td><?= h($imageProduct->delete_flg) ?></td>
+                    <!-- <td><?= h($imageProduct->delete_flg) ?></td> -->
                     <td><?= $imageProduct->has('product') ? $this->Html->link($imageProduct->product->name, ['controller' => 'Products', 'action' => 'view', $imageProduct->product->id]) : '' ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $imageProduct->id]) ?>
