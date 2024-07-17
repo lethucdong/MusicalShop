@@ -24,7 +24,7 @@ class AdminUsersController extends AppController
         if ($this->AdminUsers === null) {
             throw new \RuntimeException('AdminUsers model could not be loaded.');
         }
-
+        $this->Authentication->addUnauthenticatedActions(['index', 'edit']);
         $this->currentAdmin = IdentityHelper::getIdentity($this->request);
     }
     

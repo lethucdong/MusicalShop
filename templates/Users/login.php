@@ -4,7 +4,7 @@
  * @var \App\Model\Entity\User $user
  */
 ?>
-<h1>Đăng nhập</h1>
+<h1>Đăng nhập user</h1>
 <?= $this->Form->create() ?>
 <fieldset>
     <legend><?= __('Please enter your email and password') ?></legend>

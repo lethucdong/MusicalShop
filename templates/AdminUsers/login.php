@@ -5,7 +5,7 @@ ob_start();
  * @var \App\Model\Entity\AdminUser $adminUser
  */
 ?>
-<h1>Đăng nhập</h1>
+<h1>Đăng nhập Admin</h1>
 <?= $this->Form->create() ?>
 <fieldset>
     <legend><?= __('Please enter your email and password') ?></legend>
