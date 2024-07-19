@@ -35,8 +35,13 @@ class AdminUsersController extends AppController
         $this->paginate = [
             'contain' => ['Roles'],
         ];
-        $query = $this->AdminUsers->find()->where(['AdminUsers.delete_flg' => 0]);
-        $adminUsers = $this->paginate( $query);
+
+        $search = $this->request->getQuery('search');
+
+        $query = $this->AdminUsers->find('search', ['search' => $search])
+                            ->where(['AdminUsers.delete_flg' => 0]);
+
+        $adminUsers = $this->paginate($query);
 
         $this->set(compact('adminUsers'));
     }

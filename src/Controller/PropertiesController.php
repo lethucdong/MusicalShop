@@ -27,7 +27,11 @@ class PropertiesController extends AppController
         $this->paginate = [
             'contain' => ['Products'],
         ];
-        $query = $this->Properties->find()->where(['Properties.delete_flg' => 0]);
+        
+        $search = $this->request->getQuery('search');
+
+        $query = $this->Properties->find('search', ['search' => $search])
+                            ->where(['Properties.delete_flg' => 0]);
 
         $properties = $this->paginate($query);
 

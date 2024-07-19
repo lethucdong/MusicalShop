@@ -7,6 +7,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use App\Model\Model\SearchTrait;
 
 /**
  * Carts Model
@@ -30,6 +31,7 @@ use Cake\Validation\Validator;
  */
 class CartsTable extends Table
 {
+    use SearchTrait;
     /**
      * Initialize method
      *
@@ -105,5 +107,9 @@ class CartsTable extends Table
         $rules->add($rules->existsIn('user_id', 'Users'), ['errorField' => 'user_id']);
 
         return $rules;
+    }
+    protected function getSearchFields(): array
+    {
+        return ['Carts.name', 'Carts.description'];
     }
 }

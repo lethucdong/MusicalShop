@@ -24,7 +24,10 @@ class PermissionsController extends AppController
      */
     public function index()
     {
-        $query = $this->Permissions->find()->where(['Permissions.delete_flg' => 0]);
+        $search = $this->request->getQuery('search');
+
+        $query = $this->Permissions->find('search', ['search' => $search])
+                            ->where(['Permissions.delete_flg' => 0]);
         $permissions = $this->paginate($query);
 
         $this->set(compact('permissions'));

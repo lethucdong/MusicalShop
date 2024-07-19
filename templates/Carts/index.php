@@ -7,6 +7,12 @@
 <div class="carts index content">
     <?= $this->Html->link(__('New Cart'), ['action' => 'add'], ['class' => 'button float-right']) ?>
     <h3><?= __('Carts') ?></h3>
+    <!-- Form tìm kiếm -->
+    <?= $this->Form->create(null, ['type' => 'get']) ?>
+    <?= $this->Form->control('search', ['label' => __('Search'), 'value' => $this->request->getQuery('search')]) ?>
+    <?= $this->Form->button(__('Search')) ?>
+    <?= $this->Form->end() ?>
+    
     <div class="table-responsive">
         <table>
             <thead>

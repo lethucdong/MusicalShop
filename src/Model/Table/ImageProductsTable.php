@@ -7,6 +7,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use App\Model\Model\SearchTrait;
 
 /**
  * ImageProducts Model
@@ -29,6 +30,7 @@ use Cake\Validation\Validator;
  */
 class ImageProductsTable extends Table
 {
+    use SearchTrait;
     /**
      * Initialize method
      *
@@ -124,4 +126,11 @@ class ImageProductsTable extends Table
 
         return $rules;
     }
+
+    
+    protected function getSearchFields(): array
+    {
+        return ['ImageProducts.piority', 'ImageProducts.path_image'];
+    }
+
 }

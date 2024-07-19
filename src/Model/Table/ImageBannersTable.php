@@ -7,6 +7,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use App\Model\Model\SearchTrait;
 
 /**
  * ImageBanners Model
@@ -27,6 +28,7 @@ use Cake\Validation\Validator;
  */
 class ImageBannersTable extends Table
 {
+    use SearchTrait;
     /**
      * Initialize method
      *
@@ -104,5 +106,10 @@ class ImageBannersTable extends Table
             ->notEmptyString('delete_flg');
 
         return $validator;
+    }
+
+    protected function getSearchFields(): array
+    {
+        return ['ImageBanners.piority', 'ImageBanners.path_image', 'ImageBanners.url_decription'];
     }
 }

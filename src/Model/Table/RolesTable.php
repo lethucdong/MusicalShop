@@ -7,6 +7,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use App\Model\Model\SearchTrait;
 
 /**
  * Roles Model
@@ -30,6 +31,7 @@ use Cake\Validation\Validator;
  */
 class RolesTable extends Table
 {
+    use SearchTrait;
     /**
      * Initialize method
      *
@@ -95,5 +97,10 @@ class RolesTable extends Table
             ->allowEmptyString('delete_flg');
 
         return $validator;
+    }
+    
+    protected function getSearchFields(): array
+    {
+        return ['Roles.name', 'Roles.description'];
     }
 }

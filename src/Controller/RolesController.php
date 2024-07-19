@@ -26,7 +26,10 @@ class RolesController extends AppController
      */
     public function index()
     {
-        $query = $this->Roles->find()->where(['Roles.delete_flg' => 0]);
+        $search = $this->request->getQuery('search');
+
+        $query = $this->Roles->find('search', ['search' => $search])
+                            ->where(['Roles.delete_flg' => 0]);
 
         $roles = $this->paginate($query);
 
@@ -118,5 +121,4 @@ class RolesController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
-
 }

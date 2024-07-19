@@ -25,7 +25,11 @@ class UsersController extends AppController
      */
     public function index()
     {
-        $query = $this->Users->find()->where(['Users.delete_flg' => 0]);
+        
+        $search = $this->request->getQuery('search');
+
+        $query = $this->Users->find('search', ['search' => $search])
+                            ->where(['Users.delete_flg' => 0]);
 
         $users = $this->paginate($query);
 

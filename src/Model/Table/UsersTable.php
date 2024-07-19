@@ -7,7 +7,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
-
+use App\Model\Model\SearchTrait;
 /**
  * Users Model
  *
@@ -30,6 +30,7 @@ use Cake\Validation\Validator;
  */
 class UsersTable extends Table
 {
+    use SearchTrait;
     /**
      * Initialize method
      *
@@ -142,5 +143,10 @@ class UsersTable extends Table
     {
         return $query
             ->where(['delete_flg' => false]);
+    }
+
+    protected function getSearchFields(): array
+    {
+        return ['AnotherModel.full_name', 'AnotherModel.email', 'AnotherModel.phone', 'AnotherModel.address'];
     }
 }

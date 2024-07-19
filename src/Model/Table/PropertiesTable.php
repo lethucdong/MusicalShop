@@ -7,6 +7,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use App\Model\Model\SearchTrait;
 
 /**
  * Properties Model
@@ -29,6 +30,7 @@ use Cake\Validation\Validator;
  */
 class PropertiesTable extends Table
 {
+    use SearchTrait;
     /**
      * Initialize method
      *
@@ -112,4 +114,11 @@ class PropertiesTable extends Table
 
         return $rules;
     }
+
+    
+    protected function getSearchFields(): array
+    {
+        return ['Properties.name', 'Properties.value'];
+    }
+
 }

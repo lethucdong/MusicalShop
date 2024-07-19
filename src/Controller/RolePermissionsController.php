@@ -27,7 +27,11 @@ class RolePermissionsController extends AppController
         $this->paginate = [
             'contain' => ['Roles', 'Permissions'],
         ];
-        $query = $this->RolePermissions->find()->where(['RolePermissions.delete_flg' => 0]);
+        
+        $search = $this->request->getQuery('search');
+
+        $query = $this->RolePermissions->find('search', ['search' => $search])
+                            ->where(['RolePermissions.delete_flg' => 0]);
 
         $rolePermissions = $this->paginate($query);
 

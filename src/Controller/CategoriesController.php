@@ -24,8 +24,13 @@ class CategoriesController extends AppController
      */
     public function index()
     {
-        $query = $this->Categories->find()->where(['Categories.delete_flg' => 0]);
+        $search = $this->request->getQuery('search');
+
+        $query = $this->Categories->find('search', ['search' => $search])
+                            ->where(['Categories.delete_flg' => 0]);
+
         $categories = $this->paginate($query);
+        
 
         $this->set(compact('categories'));
     }

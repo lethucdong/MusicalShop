@@ -27,7 +27,12 @@ class CartDetailsController extends AppController
         $this->paginate = [
             'contain' => ['Products', 'Carts'],
         ];
-        $query = $this->CartDetails->find()->where(['CartDetails.delete_flg' => 0]);
+
+        $search = $this->request->getQuery('search');
+
+        $query = $this->CartDetails->find('search', ['search' => $search])
+                            ->where(['CartDetails.delete_flg' => 0]);
+
         $cartDetails = $this->paginate($query);
 
         $this->set(compact('cartDetails'));

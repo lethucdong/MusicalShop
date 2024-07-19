@@ -7,6 +7,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use App\Model\Model\SearchTrait;
 
 /**
  * Permissions Model
@@ -29,6 +30,7 @@ use Cake\Validation\Validator;
  */
 class PermissionsTable extends Table
 {
+    use SearchTrait;
     /**
      * Initialize method
      *
@@ -95,5 +97,10 @@ class PermissionsTable extends Table
             ->allowEmptyString('delete_flg');
 
         return $validator;
+    }
+
+    protected function getSearchFields(): array
+    {
+        return ['Permissions.name', 'Permissions.description'];
     }
 }

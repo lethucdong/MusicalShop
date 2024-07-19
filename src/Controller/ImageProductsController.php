@@ -33,7 +33,10 @@ class ImageProductsController extends AppController
         $this->paginate = [
             'contain' => ['Products'],
         ];
-        $query = $this->ImageProducts->find()->where(['ImageProducts.delete_flg' => 0]);
+        $search = $this->request->getQuery('search');
+
+        $query = $this->ImageProducts->find('search', ['search' => $search])
+                            ->where(['ImageProducts.delete_flg' => 0]);
 
         $imageProducts = $this->paginate($query);
 

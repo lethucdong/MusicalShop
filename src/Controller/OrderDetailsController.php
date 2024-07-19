@@ -27,7 +27,11 @@ class OrderDetailsController extends AppController
         $this->paginate = [
             'contain' => ['Products', 'Orders'],
         ];
-        $query = $this->OrderDetails->find()->where(['OrderDetails.delete_flg' => 0]);
+
+        $search = $this->request->getQuery('search');
+
+        $query = $this->OrderDetails->find('search', ['search' => $search])
+                            ->where(['OrderDetails.delete_flg' => 0]);
 
         $orderDetails = $this->paginate($query);
 

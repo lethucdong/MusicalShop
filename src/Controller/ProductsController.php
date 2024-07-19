@@ -27,7 +27,11 @@ class ProductsController extends AppController
         $this->paginate = [
             'contain' => ['Categories', 'Brands'],
         ];
-        $query = $this->Products->find()->where(['Products.delete_flg' => 0]);
+
+        $search = $this->request->getQuery('search');
+
+        $query = $this->Products->find('search', ['search' => $search])
+                            ->where(['Products.delete_flg' => 0]);
 
         $products = $this->paginate($query);
 

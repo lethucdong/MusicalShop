@@ -27,7 +27,12 @@ class CartsController extends AppController
         $this->paginate = [
             'contain' => ['Users'],
         ];
-        $query = $this->Carts->find()->where(['Carts.delete_flg' => 0]);
+
+        $search = $this->request->getQuery('search');
+
+        $query = $this->Carts->find('search', ['search' => $search])
+                            ->where(['Carts.delete_flg' => 0]);
+
         $carts = $this->paginate($query);
 
         $this->set(compact('carts'));

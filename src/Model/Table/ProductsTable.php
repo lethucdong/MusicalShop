@@ -7,6 +7,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use App\Model\Model\SearchTrait;
 
 /**
  * Products Model
@@ -34,6 +35,7 @@ use Cake\Validation\Validator;
  */
 class ProductsTable extends Table
 {
+    use SearchTrait;
     /**
      * Initialize method
      *
@@ -169,5 +171,10 @@ class ProductsTable extends Table
         $rules->add($rules->existsIn('brand_id', 'Brands'), ['errorField' => 'brand_id']);
 
         return $rules;
+    }
+
+    protected function getSearchFields(): array
+    {
+        return ['Products.name', 'Products.description'];
     }
 }

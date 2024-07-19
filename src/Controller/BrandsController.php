@@ -24,8 +24,12 @@ class BrandsController extends AppController
      */
     public function index()
     {
-        $query = $this->Brands->find()->where(['Brands.delete_flg' => 0]);
-        $brands = $this->paginate($query);
+        $search = $this->request->getQuery('search');
+
+        $query = $this->Brands->find('search', ['search' => $search])
+                            ->where(['Brands.delete_flg' => 0]);
+
+        $adminUsers = $this->paginate($query);
 
         $this->set(compact('brands'));
     }

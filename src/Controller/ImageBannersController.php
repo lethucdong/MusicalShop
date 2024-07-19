@@ -24,7 +24,10 @@ class ImageBannersController extends AppController
      */
     public function index()
     {
-        $query = $this->ImageBanners->find()->where(['ImageBanners.delete_flg' => 0]);
+        $search = $this->request->getQuery('search');
+
+        $query = $this->ImageBanners->find('search', ['search' => $search])
+                            ->where(['ImageBanners.delete_flg' => 0]);
 
         $imageBanners = $this->paginate($query);
 

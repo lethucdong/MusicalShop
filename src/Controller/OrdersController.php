@@ -27,7 +27,12 @@ class OrdersController extends AppController
         $this->paginate = [
             'contain' => ['Users'],
         ];
-        $query = $this->Orders->find()->where(['Orders.delete_flg' => 0]);
+
+        $search = $this->request->getQuery('search');
+
+        $query = $this->Orders->find('search', ['search' => $search])
+                            ->where(['Orders.delete_flg' => 0]);
+
         $orders = $this->paginate($query);
 
         $this->set(compact('orders'));

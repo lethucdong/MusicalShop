@@ -7,6 +7,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use App\Model\Model\SearchTrait;
 
 /**
  * RolePermissions Model
@@ -30,6 +31,7 @@ use Cake\Validation\Validator;
  */
 class RolePermissionsTable extends Table
 {
+    use SearchTrait;
     /**
      * Initialize method
      *

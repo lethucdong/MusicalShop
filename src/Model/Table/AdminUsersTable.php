@@ -7,6 +7,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use App\Model\Model\SearchTrait;
 
 /**
  * AdminUsers Model
@@ -29,6 +30,7 @@ use Cake\Validation\Validator;
  */
 class AdminUsersTable extends Table
 {
+    use SearchTrait;
     /**
      * Initialize method
      *
@@ -152,5 +154,11 @@ class AdminUsersTable extends Table
     {
         return $query
             ->where(['delete_flg' => false]);
+    }
+
+    
+    protected function getSearchFields(): array
+    {
+        return ['AdminUsers.username', 'AdminUsers.email', 'AdminUsers.email', 'AdminUsers.phone', 'AdminUsers.address'];
     }
 }

@@ -7,6 +7,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use App\Model\Model\SearchTrait;
 
 /**
  * Brands Model
@@ -29,6 +30,7 @@ use Cake\Validation\Validator;
  */
 class BrandsTable extends Table
 {
+    use SearchTrait;
     /**
      * Initialize method
      *
@@ -91,5 +93,10 @@ class BrandsTable extends Table
             ->notEmptyString('delete_flg');
 
         return $validator;
+    }
+
+    protected function getSearchFields(): array
+    {
+        return ['Brands.name', 'Brands.description'];
     }
 }
