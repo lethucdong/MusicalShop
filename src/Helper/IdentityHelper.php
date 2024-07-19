@@ -6,8 +6,15 @@ use Cake\Http\ServerRequest;
 
 class IdentityHelper
 {
-    public static function getIdentity(ServerRequest $request)
+    protected static $user;
+
+    public static function getIdentity()
     {
-        return $request->getAttribute('identity');
+        return self::$user;
+    }
+
+    public static function setIdentity(ServerRequest $request)
+    {
+        self::$user = $request->getAttribute('identity');
     }
 }

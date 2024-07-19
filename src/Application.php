@@ -34,6 +34,7 @@ use Authentication\AuthenticationServiceProviderInterface;
 use Authentication\Middleware\AuthenticationMiddleware;
 use Cake\Routing\Router;
 use Psr\Http\Message\ServerRequestInterface;
+use App\Helper\Constants;
 
 /**
  * Application setup class.
@@ -148,67 +149,46 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
     {
         $controller = $request->getParam('controller');
    
-        //users
-        $controllerForUser = [''];
-        if (in_array($controller, $controllerForUser)) 
-        {
-            $authenticationService = new AuthenticationService([
-                'unauthenticatedRedirect' => Router::url('/users/login'),
-                'queryParam' => 'redirect',
-            ]);
+        $unauthenticatedRedirect = '/adminUsers/login';
+        $userModel = 'AdminUsers';
+        $loginUrl = '/adminUsers/login';
 
+        if (in_array($controller, Constants::AUTHEN_USER_CONTROLLER)) 
+        {
+            $unauthenticatedRedirect = '/users/login';
+            $userModel = 'Users';
+            $loginUrl = '/users/login';
+        }
+
+        $authenticationService = new AuthenticationService([
+            'unauthenticatedRedirect' => Router::url($unauthenticatedRedirect),
+            'queryParam' => 'redirect',
+        ]);
+            // Load identifiers, ensure we check email and password fields
             $authenticationService->loadIdentifier('Authentication.Password', [
                 'fields' => [
                     'username' => 'email',
                     'password' => 'password',
                 ],
-                // 'resolver' => [
-                //         'className' => 'Authentication.Orm',
-                //         'userModel' => 'Users' // Đây là tên của model trong CakePHP
-                //     ],
-            ]);
-            // Configure form data check to pick email and password
-        $authenticationService->loadAuthenticator('Authentication.Form', [
-            'fields' => [
-                'username' => 'email',
-                'password' => 'password',
-            ],
-            'loginUrl' => Router::url('/users/login'),
-        ]);
-        }
-        else
-        {
-            $authenticationService = new AuthenticationService([
-                'unauthenticatedRedirect' => Router::url('/adminUsers/login'),
-                'queryParam' => 'redirect',
-            ]);
-                // Load identifiers, ensure we check email and password fields
-                $authenticationService->loadIdentifier('Authentication.Password', [
-                    'fields' => [
-                        'username' => 'email',
-                        'password' => 'password',
+                'resolver' => [
+                        'className' => 'Authentication.Orm',
+                        'finder' => 'active',
+                        'userModel' => $userModel // Đây là tên của model trong CakePHP
                     ],
-                    'resolver' => [
-                            'className' => 'Authentication.Orm',
-                            'userModel' => 'AdminUsers' // Đây là tên của model trong CakePHP
-                        ],
-                ]);
+            ]);
 
-                // Configure form data check to pick email and password
-                $authenticationService->loadAuthenticator('Authentication.Form', [
-                    'fields' => [
-                        'username' => 'email',
-                        'password' => 'password',
-                    ],
-                    'loginUrl' => Router::url('/adminUsers/login'),
-                ]);
-        }
-        
+            // Configure form data check to pick email and password
+            $authenticationService->loadAuthenticator('Authentication.Form', [
+                'fields' => [
+                    'username' => 'email',
+                    'password' => 'password',
+                ],
+                'loginUrl' => Router::url( $loginUrl),
+            ]);
+
         // Load the authenticators, you want session first
         $authenticationService->loadAuthenticator('Authentication.Session');
-            
-                
-
+  
         return $authenticationService;
     }
 }

@@ -2,8 +2,7 @@
 declare(strict_types=1);
 
 namespace App\Controller;
-use App\Helper\TimeHelper;
-use App\Helper\IdentityHelper;
+
 /**
  * ImageBanners Controller
  *
@@ -12,12 +11,10 @@ use App\Helper\IdentityHelper;
  */
 class ImageBannersController extends AppController
 {
-    private $currentAdmin;
-
+    
     public function initialize(): void
     {
         parent::initialize();
-        $this->currentAdmin = IdentityHelper::getIdentity($this->request);
     }
     
     /**
@@ -60,11 +57,6 @@ class ImageBannersController extends AppController
         $imageBanner = $this->ImageBanners->newEmptyEntity();
         if ($this->request->is('post')) {
             $imageBanner = $this->ImageBanners->patchEntity($imageBanner, $this->request->getData());
-            $imageBanner->delete_flg = 0;
-            $imageBanner->created_by =  $this->currentAdmin->username;
-            $imageBanner->created_at = TimeHelper::getCurrentTime();
-            $imageBanner->updated_by =  $this->currentAdmin->username;
-            $imageBanner->updated_at = TimeHelper::getCurrentTime();
             if ($this->ImageBanners->save($imageBanner)) {
                 $this->Flash->success(__('The image banner has been saved.'));
 
@@ -89,8 +81,6 @@ class ImageBannersController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $imageBanner = $this->ImageBanners->patchEntity($imageBanner, $this->request->getData());
-            $imageBanner->updated_by =  $this->currentAdmin->username;
-            $imageBanner->updated_at = TimeHelper::getCurrentTime();
             if ($this->ImageBanners->save($imageBanner)) {
                 $this->Flash->success(__('The image banner has been saved.'));
 
@@ -115,8 +105,6 @@ class ImageBannersController extends AppController
         if($imageBanner)
         {
             $imageBanner->delete_flg = 1;
-            $imageBanner->updated_by =  $this->currentAdmin->username;
-            $imageBanner->updated_at = TimeHelper::getCurrentTime();
             if ($this->ImageBanners->save($imageBanner)) {
                 $this->Flash->success(__('The image banner has been deleted.'));
             } else {

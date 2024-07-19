@@ -2,8 +2,7 @@
 declare(strict_types=1);
 
 namespace App\Controller;
-use App\Helper\TimeHelper;
-use App\Helper\IdentityHelper;
+
 /**
  * Orders Controller
  *
@@ -12,12 +11,10 @@ use App\Helper\IdentityHelper;
  */
 class OrdersController extends AppController
 {
-    private $currentAdmin;
-
+    
     public function initialize(): void
     {
         parent::initialize();
-        $this->currentAdmin = IdentityHelper::getIdentity($this->request);
     }
     
     /**
@@ -62,11 +59,6 @@ class OrdersController extends AppController
         $order = $this->Orders->newEmptyEntity();
         if ($this->request->is('post')) {
             $order = $this->Orders->patchEntity($order, $this->request->getData());
-            $order->delete_flg = 0;
-            $order->created_by =  $this->currentAdmin->username;
-            $order->created_at = TimeHelper::getCurrentTime();
-            $order->updated_by =  $this->currentAdmin->username;
-            $order->updated_at = TimeHelper::getCurrentTime();
             if ($this->Orders->save($order)) {
                 $this->Flash->success(__('The order has been saved.'));
 
@@ -92,8 +84,6 @@ class OrdersController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $order = $this->Orders->patchEntity($order, $this->request->getData());
-            $order->updated_by =  $this->currentAdmin->username;
-            $order->updated_at = TimeHelper::getCurrentTime();
             if ($this->Orders->save($order)) {
                 $this->Flash->success(__('The order has been saved.'));
 
@@ -119,8 +109,6 @@ class OrdersController extends AppController
         if($order)
         {
             $order->delete_flg = 1;
-            $order->updated_by =  $this->currentAdmin->username;
-            $order->updated_at = TimeHelper::getCurrentTime();
             if ($this->Orders->save($order)) {
                 $this->Flash->success(__('The order has been deleted.'));
             } else {

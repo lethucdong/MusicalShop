@@ -2,8 +2,7 @@
 declare(strict_types=1);
 
 namespace App\Controller;
-use App\Helper\TimeHelper;
-use App\Helper\IdentityHelper;
+
 /**
  * AdminUsers Controller
  *
@@ -12,8 +11,7 @@ use App\Helper\IdentityHelper;
  */
 class AdminUsersController extends AppController
 {
-    private $currentAdmin;
-
+    
     public function initialize(): void
     {
         parent::initialize();
@@ -25,7 +23,6 @@ class AdminUsersController extends AppController
             throw new \RuntimeException('AdminUsers model could not be loaded.');
         }
         $this->Authentication->addUnauthenticatedActions(['index', 'edit']);
-        $this->currentAdmin = IdentityHelper::getIdentity($this->request);
     }
     
     /**
@@ -70,11 +67,6 @@ class AdminUsersController extends AppController
         $adminUser = $this->AdminUsers->newEmptyEntity();
         if ($this->request->is('post')) {
             $adminUser = $this->AdminUsers->patchEntity($adminUser, $this->request->getData());
-            $adminUser->delete_flg = 0;
-            $adminUser->created_by =  $this->currentAdmin->username;
-            $adminUser->created_at = TimeHelper::getCurrentTime();
-            $adminUser->updated_by =  $this->currentAdmin->username;
-            $adminUser->updated_at = TimeHelper::getCurrentTime();
 
             if ($this->AdminUsers->save($adminUser)) {
                 $this->Flash->success(__('The admin user has been saved.'));
@@ -101,10 +93,6 @@ class AdminUsersController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $adminUser = $this->AdminUsers->patchEntity($adminUser, $this->request->getData());
-            
-            $adminUser->updated_by =  $this->currentAdmin->username;
-            $adminUser->updated_at = TimeHelper::getCurrentTime();
-
 
             if ($this->AdminUsers->save($adminUser)) {
                 $this->Flash->success(__('The admin user has been saved.'));
@@ -131,9 +119,7 @@ class AdminUsersController extends AppController
         if ($adminUser) {
 
             $adminUser->delete_flg = 1;
-            $adminUser->updated_by =  $this->currentAdmin->username;
-            $adminUser->updated_at = TimeHelper::getCurrentTime();
- 
+
             if ($this->AdminUsers->save($adminUser)) {
                 $this->Flash->success(__('The admin user has been marked as deleted.'));
             } else {
@@ -146,23 +132,15 @@ class AdminUsersController extends AppController
         return $this->redirect(['action' => 'index']);
     }
 
-    // public function beforeFilter(\Cake\Event\EventInterface $event)
-    // {
-    //     parent::beforeFilter($event);
-    //     // Configure the login action to not require authentication, preventing
-    //     // the infinite redirect loop issue
-    //     $this->Authentication->addUnauthenticatedActions(['login']);
-        
-    // }
     public function login()
     {
         $this->request->allowMethod(['get', 'post']);
         $result = $this->Authentication->getResult();
         // regardless of POST or GET, redirect if user is logged in
+
         if ($result && $result->isValid()) {
             // redirect to /articles after login success
             $redirect = $this->request->getQuery('/Roles', ['controller' => 'Roles', 'action' => 'index']);
-
             return $this->redirect($redirect);
         }
         // display error if user submitted and authentication failed

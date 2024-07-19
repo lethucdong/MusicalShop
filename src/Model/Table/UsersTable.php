@@ -137,4 +137,10 @@ class UsersTable extends Table
 
         return $rules;
     }
+
+    public function findActive(Query $query, array $options): Query
+    {
+        return $query
+            ->where(['delete_flg' => false]);
+    }
 }

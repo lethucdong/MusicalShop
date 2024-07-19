@@ -2,8 +2,7 @@
 declare(strict_types=1);
 
 namespace App\Controller;
-use App\Helper\TimeHelper;
-use App\Helper\IdentityHelper;
+
 /**
  * Products Controller
  *
@@ -12,12 +11,10 @@ use App\Helper\IdentityHelper;
  */
 class ProductsController extends AppController
 {
-    private $currentAdmin;
-
+    
     public function initialize(): void
     {
         parent::initialize();
-        $this->currentAdmin = IdentityHelper::getIdentity($this->request);
     }
     
     /**
@@ -63,11 +60,6 @@ class ProductsController extends AppController
         $product = $this->Products->newEmptyEntity();
         if ($this->request->is('post')) {
             $product = $this->Products->patchEntity($product, $this->request->getData());
-            $product->delete_flg = 0;
-            $product->created_by =  $this->currentAdmin->username;
-            $product->created_at = TimeHelper::getCurrentTime();
-            $product->updated_by =  $this->currentAdmin->username;
-            $product->updated_at = TimeHelper::getCurrentTime();
             if ($this->Products->save($product)) {
                 $this->Flash->success(__('The product has been saved.'));
 
@@ -94,8 +86,6 @@ class ProductsController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $product = $this->Products->patchEntity($product, $this->request->getData());
-            $product->updated_by =  $this->currentAdmin->username;
-            $product->updated_at = TimeHelper::getCurrentTime();
             if ($this->Products->save($product)) {
                 $this->Flash->success(__('The product has been saved.'));
 
@@ -122,8 +112,6 @@ class ProductsController extends AppController
         if($product)
         {
             $product->delete_flg = 1;
-            $product->updated_by =  $this->currentAdmin->username;
-            $product->updated_at = TimeHelper::getCurrentTime();
             if ($this->Products->save($product)) {
                 $this->Flash->success(__('The product has been deleted.'));
             } else {

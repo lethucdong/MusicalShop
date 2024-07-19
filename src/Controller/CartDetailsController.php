@@ -2,8 +2,7 @@
 declare(strict_types=1);
 
 namespace App\Controller;
-use App\Helper\TimeHelper;
-use App\Helper\IdentityHelper;
+
 /**
  * CartDetails Controller
  *
@@ -12,12 +11,10 @@ use App\Helper\IdentityHelper;
  */
 class CartDetailsController extends AppController
 {
-    private $currentAdmin;
-
+    
     public function initialize(): void
     {
         parent::initialize();
-        $this->currentAdmin = IdentityHelper::getIdentity($this->request);
     }
     
     /**
@@ -62,11 +59,6 @@ class CartDetailsController extends AppController
         $cartDetail = $this->CartDetails->newEmptyEntity();
         if ($this->request->is('post')) {
             $cartDetail = $this->CartDetails->patchEntity($cartDetail, $this->request->getData());
-            $cartDetail->delete_flg = 0;
-            $cartDetail->created_by =  $this->currentAdmin->username;
-            $cartDetail->created_at = TimeHelper::getCurrentTime();
-            $cartDetail->updated_by =  $this->currentAdmin->username;
-            $cartDetail->updated_at = TimeHelper::getCurrentTime();
 
             if ($this->CartDetails->save($cartDetail)) {
                 $this->Flash->success(__('The cart detail has been saved.'));
@@ -94,8 +86,6 @@ class CartDetailsController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $cartDetail = $this->CartDetails->patchEntity($cartDetail, $this->request->getData());
-            $cartDetail->updated_by =  $this->currentAdmin->username;
-            $cartDetail->updated_at = TimeHelper::getCurrentTime();
             if ($this->CartDetails->save($cartDetail)) {
                 $this->Flash->success(__('The cart detail has been saved.'));
 
@@ -122,8 +112,6 @@ class CartDetailsController extends AppController
         if($cartDetail)
         {
             $cartDetail->delete_flg = 1; 
-            $cartDetail->updated_by =  $this->currentAdmin->username;
-            $cartDetail->updated_at = TimeHelper::getCurrentTime();
             if ($this->CartDetails->save($cartDetail)) {
                 $this->Flash->success(__('The cart detail has been deleted.'));
             } else {

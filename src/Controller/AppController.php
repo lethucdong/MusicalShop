@@ -16,6 +16,8 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use Cake\Controller\Controller;
+use App\Helper\IdentityHelper;
+use Cake\Http\Exception\UnauthorizedException;
 
 /**
  * Application Controller

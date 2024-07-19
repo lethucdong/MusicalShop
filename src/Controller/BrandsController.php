@@ -2,8 +2,7 @@
 declare(strict_types=1);
 
 namespace App\Controller;
-use App\Helper\TimeHelper;
-use App\Helper\IdentityHelper;
+
 /**
  * Brands Controller
  *
@@ -12,12 +11,10 @@ use App\Helper\IdentityHelper;
  */
 class BrandsController extends AppController
 {
-    private $currentAdmin;
-
+    
     public function initialize(): void
     {
         parent::initialize();
-        $this->currentAdmin = IdentityHelper::getIdentity($this->request);
     }
     
     /**
@@ -59,11 +56,6 @@ class BrandsController extends AppController
         $brand = $this->Brands->newEmptyEntity();
         if ($this->request->is('post')) {
             $brand = $this->Brands->patchEntity($brand, $this->request->getData());
-            $brand->delete_flg = 0;
-            $brand->created_by =  $this->currentAdmin->username;
-            $brand->created_at = TimeHelper::getCurrentTime();
-            $brand->updated_by =  $this->currentAdmin->username;
-            $brand->updated_at = TimeHelper::getCurrentTime();
 
             if ($this->Brands->save($brand)) {
                 $this->Flash->success(__('The brand has been saved.'));
@@ -90,9 +82,6 @@ class BrandsController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $brand = $this->Brands->patchEntity($brand, $this->request->getData());
 
-            $brand->updated_by =  $this->currentAdmin->username;
-            $brand->updated_at = TimeHelper::getCurrentTime();
-
             if ($this->Brands->save($brand)) {
                 $this->Flash->success(__('The brand has been saved.'));
 
@@ -117,8 +106,6 @@ class BrandsController extends AppController
         if($brand)
         {
             $brand->delete_flg = 1; 
-            $brand->updated_by =  $this->currentAdmin->username;
-            $brand->updated_at = TimeHelper::getCurrentTime();
             
             if ($this->Brands->save($brand)) {
                 $this->Flash->success(__('The brand has been deleted.'));

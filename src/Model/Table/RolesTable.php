@@ -50,6 +50,8 @@ class RolesTable extends Table
         $this->hasMany('RolePermissions', [
             'foreignKey' => 'role_id',
         ]);
+
+        $this->addBehavior('AuditLog');
     }
 
     /**

@@ -2,8 +2,7 @@
 declare(strict_types=1);
 
 namespace App\Controller;
-use App\Helper\TimeHelper;
-use App\Helper\IdentityHelper;
+
 /**
  * OrderDetails Controller
  *
@@ -12,12 +11,10 @@ use App\Helper\IdentityHelper;
  */
 class OrderDetailsController extends AppController
 {
-    private $currentAdmin;
-
+    
     public function initialize(): void
     {
         parent::initialize();
-        $this->currentAdmin = IdentityHelper::getIdentity($this->request);
     }
     
     /**
@@ -63,11 +60,6 @@ class OrderDetailsController extends AppController
         $orderDetail = $this->OrderDetails->newEmptyEntity();
         if ($this->request->is('post')) {
             $orderDetail = $this->OrderDetails->patchEntity($orderDetail, $this->request->getData());
-            $orderDetail->delete_flg = 0;
-            $orderDetail->created_by =  $this->currentAdmin->username;
-            $orderDetail->created_at = TimeHelper::getCurrentTime();
-            $orderDetail->updated_by =  $this->currentAdmin->username;
-            $orderDetail->updated_at = TimeHelper::getCurrentTime();
             if ($this->OrderDetails->save($orderDetail)) {
                 $this->Flash->success(__('The order detail has been saved.'));
 
@@ -94,8 +86,6 @@ class OrderDetailsController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $orderDetail = $this->OrderDetails->patchEntity($orderDetail, $this->request->getData());
-            $orderDetail->updated_by =  $this->currentAdmin->username;
-            $orderDetail->updated_at = TimeHelper::getCurrentTime();
             if ($this->OrderDetails->save($orderDetail)) {
                 $this->Flash->success(__('The order detail has been saved.'));
 
@@ -122,8 +112,6 @@ class OrderDetailsController extends AppController
         if($orderDetail)
         {
             $orderDetail->delete_flg = 1;
-            $orderDetail->updated_by =  $this->currentAdmin->username;
-            $orderDetail->updated_at = TimeHelper::getCurrentTime();
             if ($this->OrderDetails->save($orderDetail)) {
                 $this->Flash->success(__('The order detail has been deleted.'));
             } else {
