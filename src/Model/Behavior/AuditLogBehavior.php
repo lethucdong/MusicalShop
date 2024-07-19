@@ -19,6 +19,8 @@ class AuditLogBehavior extends Behavior
             $entity->delete_flg = 0;
             $entity->created_at = TimeHelper::getCurrentTime();
             $entity->created_by = $user->username;
+            $entity->updated_at = TimeHelper::getCurrentTime();
+            $entity->updated_by = $user->username; 
         }
 
         $entity->updated_at = TimeHelper::getCurrentTime();
