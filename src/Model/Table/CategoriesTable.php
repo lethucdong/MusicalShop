@@ -48,6 +48,7 @@ class CategoriesTable extends Table
         $this->hasMany('Products', [
             'foreignKey' => 'category_id',
         ]);
+        $this->addBehavior('AuditLog');
     }
 
     /**
@@ -67,30 +68,6 @@ class CategoriesTable extends Table
         $validator
             ->scalar('description')
             ->allowEmptyString('description');
-
-        $validator
-            ->dateTime('created_at')
-            ->requirePresence('created_at', 'create')
-            ->notEmptyDateTime('created_at');
-
-        $validator
-            ->scalar('created_by')
-            ->maxLength('created_by', 255)
-            ->requirePresence('created_by', 'create')
-            ->notEmptyString('created_by');
-
-        $validator
-            ->dateTime('updated_at')
-            ->allowEmptyDateTime('updated_at');
-
-        $validator
-            ->scalar('updated_by')
-            ->maxLength('updated_by', 255)
-            ->allowEmptyString('updated_by');
-
-        $validator
-            ->boolean('delete_flg')
-            ->notEmptyString('delete_flg');
 
         return $validator;
     }

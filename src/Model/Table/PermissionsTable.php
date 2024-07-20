@@ -48,6 +48,8 @@ class PermissionsTable extends Table
         $this->hasMany('RolePermissions', [
             'foreignKey' => 'permission_id',
         ]);
+
+        $this->addBehavior('AuditLog');
     }
 
     /**
@@ -73,28 +75,6 @@ class PermissionsTable extends Table
         $validator
             ->scalar('description')
             ->allowEmptyString('description');
-
-        $validator
-            ->dateTime('created_at')
-            ->allowEmptyDateTime('created_at');
-
-        $validator
-            ->scalar('created_by')
-            ->maxLength('created_by', 255)
-            ->allowEmptyString('created_by');
-
-        $validator
-            ->dateTime('updated_at')
-            ->allowEmptyDateTime('updated_at');
-
-        $validator
-            ->scalar('updated_by')
-            ->maxLength('updated_by', 255)
-            ->allowEmptyString('updated_by');
-
-        $validator
-            ->boolean('delete_flg')
-            ->allowEmptyString('delete_flg');
 
         return $validator;
     }

@@ -42,6 +42,8 @@ class ImageBannersTable extends Table
         $this->setTable('image_banners');
         $this->setDisplayField('path_image');
         $this->setPrimaryKey('id');
+
+        $this->addBehavior('AuditLog');
     }
 
     /**
@@ -78,32 +80,6 @@ class ImageBannersTable extends Table
             ->dateTime('end_date')
             ->requirePresence('end_date', 'create')
             ->notEmptyDateTime('end_date');
-
-        $validator
-            ->dateTime('created_at')
-            ->requirePresence('created_at', 'create')
-            ->notEmptyDateTime('created_at');
-
-        $validator
-            ->scalar('created_by')
-            ->maxLength('created_by', 255)
-            ->requirePresence('created_by', 'create')
-            ->notEmptyString('created_by');
-
-        $validator
-            ->dateTime('updated_at')
-            ->requirePresence('updated_at', 'create')
-            ->notEmptyDateTime('updated_at');
-
-        $validator
-            ->scalar('updated_by')
-            ->maxLength('updated_by', 255)
-            ->requirePresence('updated_by', 'create')
-            ->notEmptyString('updated_by');
-
-        $validator
-            ->boolean('delete_flg')
-            ->notEmptyString('delete_flg');
 
         return $validator;
     }

@@ -35,7 +35,6 @@ use Authentication\Middleware\AuthenticationMiddleware;
 use Cake\Routing\Router;
 use Psr\Http\Message\ServerRequestInterface;
 use App\Helper\Constants;
-
 /**
  * Application setup class.
  *

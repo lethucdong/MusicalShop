@@ -2,7 +2,8 @@
 declare(strict_types=1);
 
 namespace App\Controller;
-
+use App\Helper\IdentityHelper;
+use Cake\ORM\Table;
 /**
  * AdminUsers Controller
  *
@@ -146,6 +147,7 @@ class AdminUsersController extends AppController
         if ($result && $result->isValid()) {
             // redirect to /articles after login success
             $redirect = $this->request->getQuery('/Roles', ['controller' => 'Roles', 'action' => 'index']);
+            IdentityHelper::setIdentity($this->request);
             return $this->redirect($redirect);
         }
         // display error if user submitted and authentication failed

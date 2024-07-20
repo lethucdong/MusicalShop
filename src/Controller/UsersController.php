@@ -2,8 +2,7 @@
 declare(strict_types=1);
 
 namespace App\Controller;
-
-
+use Cake\ORM\Table;
 /**
  * Users Controller
  *
@@ -130,7 +129,6 @@ class UsersController extends AppController
     {
         $this->request->allowMethod(['get', 'post']);
         $result = $this->Authentication->getResult();
-        debug($result);
         // regardless of POST or GET, redirect if user is logged in
         if ($result && $result->isValid()) {
             // redirect to /articles after login success

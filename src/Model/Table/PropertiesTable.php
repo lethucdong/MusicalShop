@@ -40,7 +40,6 @@ class PropertiesTable extends Table
     public function initialize(array $config): void
     {
         parent::initialize($config);
-
         $this->setTable('properties');
         $this->setDisplayField('name');
         $this->setPrimaryKey('id');
@@ -49,6 +48,8 @@ class PropertiesTable extends Table
             'foreignKey' => 'product_id',
             'joinType' => 'INNER',
         ]);
+
+        $this->addBehavior('AuditLog');
     }
 
     /**
@@ -73,30 +74,6 @@ class PropertiesTable extends Table
             ->scalar('value')
             ->maxLength('value', 255)
             ->allowEmptyString('value');
-
-        $validator
-            ->dateTime('created_at')
-            ->requirePresence('created_at', 'create')
-            ->notEmptyDateTime('created_at');
-
-        $validator
-            ->scalar('created_by')
-            ->maxLength('created_by', 255)
-            ->requirePresence('created_by', 'create')
-            ->notEmptyString('created_by');
-
-        $validator
-            ->dateTime('updated_at')
-            ->allowEmptyDateTime('updated_at');
-
-        $validator
-            ->scalar('updated_by')
-            ->maxLength('updated_by', 255)
-            ->allowEmptyString('updated_by');
-
-        $validator
-            ->boolean('delete_flg')
-            ->notEmptyString('delete_flg');
 
         return $validator;
     }

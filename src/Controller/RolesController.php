@@ -93,6 +93,7 @@ class RolesController extends AppController
 
                 return $this->redirect(['action' => 'index']);
             }
+            
             $this->Flash->error(__('The role could not be saved. Please, try again.'));
         }
         $this->set(compact('role'));

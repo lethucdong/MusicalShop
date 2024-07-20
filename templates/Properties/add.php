@@ -20,16 +20,40 @@
                 <?php
                     echo $this->Form->control('product_id', ['options' => $products]);
                     echo $this->Form->control('name');
-                    echo $this->Form->control('value');
-                    //echo $this->Form->control('created_at');
-                    //echo $this->Form->control('created_by');
-                    //echo $this->Form->control('updated_at', ['empty' => true]);
-                    //echo $this->Form->control('updated_by');
-                    //echo $this->Form->control('delete_flg');
                 ?>
+                <div>
+                    <label><?= __('Type') ?></label>
+                    <?= $this->Form->radio('type', [
+                        ['value' => 'text', 'text' => __('Text'), 'checked' => true],
+                        ['value' => 'color', 'text' => __('Color')]
+                    ], ['id' => 'type-radio']) ?>
+                </div>
+                <div>
+                    <?= $this->Form->control('value', ['type' => 'text', 'id' => 'value-input']) ?>
+                </div>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
             <?= $this->Form->end() ?>
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var typeRadios = document.querySelectorAll('input[name="type"]');
+        var valueInput = document.getElementById('value-input');
+
+        typeRadios.forEach(function(radio) {
+            radio.addEventListener('change', function() {
+                if (this.value === 'color') {
+                    valueInput.type = 'color';
+                } else {
+                    valueInput.type = 'text';
+                }
+            });
+        });
+
+        // Set the initial input type to text
+        valueInput.type = 'text';
+    });
+</script>

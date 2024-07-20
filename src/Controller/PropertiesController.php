@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 namespace App\Controller;
-
+use Cake\ORM\Table;
 /**
  * Properties Controller
  *
@@ -64,6 +64,7 @@ class PropertiesController extends AppController
         $property = $this->Properties->newEmptyEntity();
         if ($this->request->is('post')) {
             $property = $this->Properties->patchEntity($property, $this->request->getData());
+
             if ($this->Properties->save($property)) {
                 $this->Flash->success(__('The property has been saved.'));
 

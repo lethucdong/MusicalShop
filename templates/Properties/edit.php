@@ -1,10 +1,3 @@
-<?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\Property $property
- * @var string[]|\Cake\Collection\CollectionInterface $products
- */
-?>
 <div class="row">
     <aside class="column">
         <div class="side-nav">
@@ -25,12 +18,19 @@
                 <?php
                     echo $this->Form->control('product_id', ['options' => $products]);
                     echo $this->Form->control('name');
-                    echo $this->Form->control('value');
-                    //echo $this->Form->control('created_at');
-                    //echo $this->Form->control('created_by');
-                    //echo $this->Form->control('updated_at', ['empty' => true]);
-                    //echo $this->Form->control('updated_by');
-                    //echo $this->Form->control('delete_flg');
+                ?>
+                <div>
+                    <label><?= __('Type') ?></label>
+                    <?= $this->Form->radio('type', [
+                        ['value' => 'text', 'text' => 'Text', 'checked' => false],
+                        ['value' => 'color', 'text' => 'Color', 'checked' => false]
+                    ], ['id' => 'type-radio']); ?>
+                </div>
+                <?php
+                    echo $this->Form->control('value', [
+                        'type' => 'text',
+                        'id' => 'value-field'
+                    ]);
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
@@ -38,3 +38,42 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const radios = document.querySelectorAll('input[name="type"]');
+        const valueField = document.getElementById('value-field');
+
+        function isColor(value) {
+            const s = new Option().style;
+            s.color = value;
+            return s.color !== '';
+        }
+
+        if (isColor(valueField.value)) {
+            radios.forEach(radio => {
+                if (radio.value === 'color') {
+                    radio.checked = true;
+                    valueField.type = 'color';
+                }
+            });
+        } else {
+            radios.forEach(radio => {
+                if (radio.value === 'text') {
+                    radio.checked = true;
+                    valueField.type = 'text';
+                }
+            });
+        }
+
+        radios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (this.value === 'color') {
+                    valueField.type = 'color';
+                } else {
+                    valueField.type = 'text';
+                }
+            });
+        });
+    });
+</script>

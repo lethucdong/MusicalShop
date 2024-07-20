@@ -28,7 +28,19 @@
                 </tr>
                 <tr>
                     <th><?= __('Value') ?></th>
-                    <td><?= h($property->value) ?></td>
+                    <td>
+                        <?php
+                        // Hàm kiểm tra giá trị có phải là màu sắc hay không
+                        function isColor($value) {
+                            return preg_match('/^#[a-f0-9]{6}$/i', $value);
+                        }
+                        
+                        if (isColor($property->value)): ?>
+                            <input type="color" value="<?= h($property->value) ?>" disabled>
+                        <?php else: ?>
+                            <?= h($property->value) ?>
+                        <?php endif; ?>
+                    </td>
                 </tr>
                 <tr>
                     <th><?= __('Created By') ?></th>
