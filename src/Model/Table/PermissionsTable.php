@@ -81,6 +81,6 @@ class PermissionsTable extends Table
 
     protected function getSearchFields(): array
     {
-        return ['Permissions.name', 'Permissions.description'];
+        return ['Permissions.name', 'Permissions.description', 'Permissions.module_function'];
     }
 }

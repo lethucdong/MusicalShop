@@ -35,6 +35,8 @@ use Authentication\Middleware\AuthenticationMiddleware;
 use Cake\Routing\Router;
 use Psr\Http\Message\ServerRequestInterface;
 use App\Helper\Constants;
+
+use App\Middleware\AuthorMiddleware;
 /**
  * Application setup class.
  *
@@ -112,7 +114,9 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
             ->add(new RoutingMiddleware($this))
             ->add(new BodyParserMiddleware())
             // Add the AuthenticationMiddleware. It should be after routing and body parser.
-            ->add(new AuthenticationMiddleware($this));
+            
+            ->add(new AuthenticationMiddleware($this))
+            ->add(AuthorMiddleware::class);
 
 
         return $middlewareQueue;

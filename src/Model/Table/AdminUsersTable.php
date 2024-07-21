@@ -132,7 +132,18 @@ class AdminUsersTable extends Table
     public function findActive(Query $query, array $options): Query
     {
         return $query
-            ->where(['delete_flg' => false]);
+        ->where(['AdminUsers.delete_flg' => false])
+        ->contain(['Roles' => ['RolePermissions'=>['Permissions']]]);
+        // ->contain([
+        //     'Roles' => [
+        //         'RolePermissions' => [
+        //             'conditions' => ['RolePermissions.delete_flg' => false],
+        //             'Permissions' => [
+        //                 'conditions' => ['Permissions.delete_flg' => false]
+        //             ]
+        //         ]
+        //     ]
+        // ]);
     }
 
     

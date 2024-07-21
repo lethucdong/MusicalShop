@@ -53,7 +53,7 @@ class AllSeed extends AbstractSeed
         $data = [
             [
                 'id' => 1,
-                'module_function' => 'UserController:index',
+                'module_function' => 'Users:index',
                 'name' => 'View User List',
                 'description' => 'Allows viewing the list of users',
                 'created_at' => new \Cake\I18n\FrozenTime('2024-07-05 20:14:13'),
@@ -64,7 +64,7 @@ class AllSeed extends AbstractSeed
             ],
             [
                 'id' => 2,
-                'module_function' => 'UserController:create',
+                'module_function' => 'Users:create',
                 'name' => 'Create User',
                 'description' => 'Allows creating a new user',
                 'created_at' => new \Cake\I18n\FrozenTime('2024-07-05 20:14:13'),
@@ -75,7 +75,7 @@ class AllSeed extends AbstractSeed
             ],
             [
                 'id' => 3,
-                'module_function' => 'UserController:delete',
+                'module_function' => 'Users:delete',
                 'name' => 'Delete User',
                 'description' => 'Allows deleting a user',
                 'created_at' => new \Cake\I18n\FrozenTime('2024-07-05 20:14:13'),
@@ -86,7 +86,7 @@ class AllSeed extends AbstractSeed
             ],
             [
                 'id' => 4,
-                'module_function' => 'UserController:detail',
+                'module_function' => 'Users:view',
                 'name' => 'View User Detail',
                 'description' => 'Allows viewing detailed user information',
                 'created_at' => new \Cake\I18n\FrozenTime('2024-07-05 20:14:13'),
@@ -97,7 +97,7 @@ class AllSeed extends AbstractSeed
             ],
             [
                 'id' => 5,
-                'module_function' => 'UserController:update',
+                'module_function' => 'Users:update',
                 'name' => 'Update User',
                 'description' => 'Allows updating user information',
                 'created_at' => new \Cake\I18n\FrozenTime('2024-07-05 20:14:13'),
@@ -108,7 +108,7 @@ class AllSeed extends AbstractSeed
             ],
             [
                 'id' => 6,
-                'module_function' => 'CategoryController:index',
+                'module_function' => 'Categories:index',
                 'name' => 'View Category List',
                 'description' => 'Allows viewing the list of categories',
                 'created_at' => new \Cake\I18n\FrozenTime('2024-07-05 20:14:13'),
@@ -119,7 +119,7 @@ class AllSeed extends AbstractSeed
             ],
             [
                 'id' => 7,
-                'module_function' => 'CategoryController:create',
+                'module_function' => 'Categories:create',
                 'name' => 'Create Category',
                 'description' => 'Allows creating a new category',
                 'created_at' => new \Cake\I18n\FrozenTime('2024-07-05 20:14:13'),
@@ -130,7 +130,7 @@ class AllSeed extends AbstractSeed
             ],
             [
                 'id' => 8,
-                'module_function' => 'CategoryController:delete',
+                'module_function' => 'Categories:delete',
                 'name' => 'Delete Category',
                 'description' => 'Allows deleting a category',
                 'created_at' => new \Cake\I18n\FrozenTime('2024-07-05 20:14:13'),
@@ -141,7 +141,7 @@ class AllSeed extends AbstractSeed
             ],
             [
                 'id' => 9,
-                'module_function' => 'CategoryController:detail',
+                'module_function' => 'Categories:view',
                 'name' => 'View Category Detail',
                 'description' => 'Allows viewing detailed category information',
                 'created_at' => new \Cake\I18n\FrozenTime('2024-07-05 20:14:13'),
