@@ -4,6 +4,10 @@
  * @var iterable<\App\Model\Entity\Role> $roles
  */
 ?>
+<?= $this->Html->css([]) ?>
+
+<?= $this->fetch('css') ?>
+
 <div class="roles index content">
     <?= $this->Html->link(__('New Role'), ['action' => 'add'], ['class' => 'button float-right']) ?>
     <h3><?= __('Roles') ?></h3>

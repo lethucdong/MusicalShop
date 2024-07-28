@@ -7,12 +7,20 @@ use Cake\Event\EventInterface;
 use ArrayObject;
 use App\Helper\IdentityHelper;
 use App\Helper\TimeHelper;
+use Cake\Routing\Router;
 
 class AuditLogBehavior extends Behavior
 {
 
     public function beforeSave(EventInterface $event, $entity, ArrayObject $options)
     {
+        $ahihi = Router::getRequest();
+
+        $ahuhu = IdentityHelper::isPermission($ahihi);
+
+        // debug($ahuhu);
+        // die();
+
         $user = IdentityHelper::getIdentity();
 
         if ($entity->isNew()) {

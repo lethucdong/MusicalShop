@@ -26,8 +26,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         <?= $this->fetch('title') ?>
     </title>
     <?= $this->Html->meta('icon') ?>
-
-    <?= $this->Html->css(['normalize.min', 'milligram.min', 'fonts', 'cake']) ?>
+    <?= $this->Html->css(['normalize.min', 'milligram.min', 'fonts', 'cake', 'style']) ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -37,19 +36,46 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <nav class="top-nav">
         <div class="top-nav-title">
             <a href="<?= $this->Url->build('/') ?>"><span>Cake</span>PHP</a>
+            <div class="menu-toggle"  onclick="toggleMenu()">
+                <span >&#9776;</span>
+            </div>
         </div>
         <div class="top-nav-links">
             <a target="_blank" rel="noopener" href="https://book.cakephp.org/4/">Documentation</a>
             <a target="_blank" rel="noopener" href="https://api.cakephp.org/">API</a>
+            
+            
         </div>
     </nav>
     <main class="main">
         <div class="container">
             <?= $this->Flash->render() ?>
-            <?= $this->fetch('content') ?>
+            <div class="content_row">
+                <?php if ($showSideBar): ?>
+                    <div class="sidebar_area">
+                        <?= $this->element('sidebar_menu') ?>
+                    </div>
+                <?php endif; ?>
+                <div class="content_area">
+                    <?= $this->fetch('content') ?>
+                </div>
+            </div>
         </div>
     </main>
     <footer>
     </footer>
+
+    <script>
+        function toggleMenu() {
+            console.log('ddddđ');
+            var menu = document.querySelector('.sidebar_area');
+            if (menu.style.display === 'flex') {
+                menu.style.display = 'none';
+            } else {
+                menu.style.display = 'flex';
+            }
+        }
+    </script>
+
 </body>
 </html>

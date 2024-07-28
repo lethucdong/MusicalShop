@@ -18,6 +18,9 @@ namespace App\Controller;
 use Cake\Controller\Controller;
 use Cake\Http\Exception\UnauthorizedException;
 use App\Helper\IdentityHelper;
+use Cake\Event\EventInterface;
+use App\Helper\Constants;
+
 /**
  * Application Controller
  *
@@ -65,5 +68,17 @@ class AppController extends Controller
 
         $user = $this->request->getAttribute('identity');
         IdentityHelper::setIdentity($this->request);
+    }
+
+    public function beforeRender(EventInterface $event)
+    {
+        parent::beforeRender($event);
+        $showSideBar = false;
+        $user = $this->request->getAttribute('identity');
+        if (!in_array($this->request->getParam('action'),['login', 'register']) && in_array($this->request->getParam('controller'), Constants::SHOW_SIDEBAR_CONTROLLER))
+        {
+            $showSideBar = true;
+        }
+        $this->set('showSideBar', $showSideBar);
     }
 }
