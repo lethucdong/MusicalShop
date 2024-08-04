@@ -36,9 +36,11 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <nav class="top-nav">
         <div class="top-nav-title">
             <a href="<?= $this->Url->build('/') ?>"><span>Cake</span>PHP</a>
+            <?php if ($showSideBar): ?>
             <div class="menu-toggle"  onclick="toggleMenu()">
                 <span >&#9776;</span>
             </div>
+            <?php endif; ?>
         </div>
         <div class="top-nav-links">
             <a target="_blank" rel="noopener" href="https://book.cakephp.org/4/">Documentation</a>

@@ -17,5 +17,6 @@
         <li><?= $this->Html->link('CartDetails', ['controller' => 'CartDetails', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link('Brands', ['controller' => 'Brands', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link('AdminUsers', ['controller' => 'AdminUsers', 'action' => 'index']) ?></li>
+        <li style="font-weight: bold;"><?= $this->Html->link('Logout', ['controller' => 'AdminUsers', 'action' => 'logout'],  ['style' => 'color: red;']) ?></li>
     </ul>
 </div>

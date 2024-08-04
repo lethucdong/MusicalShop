@@ -155,4 +155,13 @@ class AdminUsersController extends AppController
             $this->Flash->error(__('Invalid email or password'));
         }
     }
+    public function logout()
+    {
+        $result = $this->Authentication->getResult();
+        // regardless of POST or GET, redirect if user is logged in
+        if ($result && $result->isValid()) {
+            $this->Authentication->logout();
+            return $this->redirect(['controller' => 'AdminUsers', 'action' => 'login']);
+        }
+    }
 }
