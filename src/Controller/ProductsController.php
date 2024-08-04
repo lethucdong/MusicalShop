@@ -125,4 +125,24 @@ class ProductsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+    public function all()
+    {
+        $this->viewBuilder()->setLayout('product');
+    }
+
+    public function search()
+    {
+        $this->viewBuilder()->setLayout('product');
+    }
+
+    public function detail($id = null)
+    {
+        $this->viewBuilder()->setLayout('product');
+    }
+
+    public function category($id = null)
+    {
+        $this->viewBuilder()->setLayout('product');
+    }
 }
