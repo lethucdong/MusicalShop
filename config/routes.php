@@ -73,6 +73,18 @@ return function (RouteBuilder $routes): void {
         $builder->connect('/Brands', ['controller' => 'Brands', 'action' => 'index']);
         $builder->connect('/AdminUsers', ['controller' => 'AdminUsers', 'action' => 'index']);
 
+        // MyPage
+        $builder->connect('/MyPage', ['controller' => 'UserPage', 'action' => 'myPage']);
+
+         // Thông tin khách hàng
+        $builder->connect('/CustomerInfo', ['controller' => 'UserPage', 'action' => 'customerInfo']);
+
+        // Thay đổi thông tin khách hàng
+        $builder->connect('/CustomerChange', ['controller' => 'UserPage', 'action' => 'customerChange']);
+
+        // Thay đổi mật khẩu
+        $builder->connect('/PasswordChange', ['controller' => 'UserPage', 'action' => 'passwordChange']);
+
         /*
          * ...and connect the rest of 'Pages' controller's URLs.
          */
