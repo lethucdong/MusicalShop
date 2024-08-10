@@ -16,6 +16,8 @@ class IdentityHelper
     public static function setIdentity(ServerRequest $request)
     {
         self::$user = $request->getAttribute('identity');
+        // debug(self::$user);
+        // die();
     }
 
     public static function isPermission(ServerRequest $request)

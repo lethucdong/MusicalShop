@@ -146,7 +146,7 @@ class AdminUsersController extends AppController
 
         if ($result && $result->isValid()) {
             // redirect to /articles after login success
-            $redirect = $this->request->getQuery('/Roles', ['controller' => 'Roles', 'action' => 'index']);
+            $redirect = $this->request->getQuery('/Dashboard', ['controller' => 'Dashboard', 'action' => 'index']);
             IdentityHelper::setIdentity($this->request);
             return $this->redirect($redirect);
         }
@@ -161,7 +161,9 @@ class AdminUsersController extends AppController
         // regardless of POST or GET, redirect if user is logged in
         if ($result && $result->isValid()) {
             $this->Authentication->logout();
-            return $this->redirect(['controller' => 'AdminUsers', 'action' => 'login']);
+            IdentityHelper::setIdentity($this->request);
+            $redirect = $this->request->getQuery('/Dashboard', ['controller' => 'Dashboard', 'action' => 'index']);
+            return $this->redirect($redirect);
         }
     }
 }

@@ -67,4 +67,10 @@ class ErrorController extends AppController
     public function afterFilter(EventInterface $event)
     {
     }
+
+    public function error403()
+    {
+        $message = '403 - Không có quyền truy cập';
+        $this->set(compact('message'));
+    }
 }

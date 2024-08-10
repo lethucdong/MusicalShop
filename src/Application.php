@@ -156,12 +156,12 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
         $userModel = 'AdminUsers';
         $loginUrl = '/adminUsers/login';
 
-        if (in_array($controller, Constants::AUTHEN_USER_CONTROLLER)) 
-        {
-            $unauthenticatedRedirect = '/users/login';
-            $userModel = 'Users';
-            $loginUrl = '/users/login';
-        }
+        // if (in_array($controller, Constants::AUTHEN_USER_CONTROLLER)) 
+        // {
+        //     $unauthenticatedRedirect = '/users/login';
+        //     $userModel = 'Users';
+        //     $loginUrl = '/users/login';
+        // }
 
         $authenticationService = new AuthenticationService([
             'unauthenticatedRedirect' => Router::url($unauthenticatedRedirect),
