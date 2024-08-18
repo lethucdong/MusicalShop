@@ -53,6 +53,8 @@ class AdminUser extends Entity
         'delete_flg' => true,
         'role_id' => true,
         'role' => true,
+        'reset_password' => true,
+        'reset_password_expiry' => true,
     ];
 
     /**

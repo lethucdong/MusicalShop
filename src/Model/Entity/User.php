@@ -53,6 +53,8 @@ class User extends Entity
         'delete_flg' => true,
         'cart' => true,
         'orders' => true,
+        'reset_password' => true,
+        'reset_password_expiry' => true,
     ];
 
     /**

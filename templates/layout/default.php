@@ -69,7 +69,6 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 
     <script>
         function toggleMenu() {
-            console.log('ddddđ');
             var menu = document.querySelector('.sidebar_area');
             if (menu.style.display === 'flex') {
                 menu.style.display = 'none';

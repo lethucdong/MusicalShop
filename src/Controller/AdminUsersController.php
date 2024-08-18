@@ -4,6 +4,15 @@ declare(strict_types=1);
 namespace App\Controller;
 use App\Helper\IdentityHelper;
 use Cake\ORM\Table;
+use Cake\Mailer\Mailer;
+use Cake\Datasource\Exception\RecordNotFoundException;
+use PHPMailer\PHPMailer\PHPMailer;
+use Authentication\PasswordHasher\DefaultPasswordHasher; // Add this line
+
+require ROOT . '/vendor/phpmailer/phpmailer/src/Exception.php';
+require ROOT . '/vendor/phpmailer/phpmailer/src/PHPMailer.php';
+require ROOT . '/vendor/phpmailer/phpmailer/src/SMTP.php';
+
 /**
  * AdminUsers Controller
  *
@@ -23,7 +32,7 @@ class AdminUsersController extends AppController
         if ($this->AdminUsers === null) {
             throw new \RuntimeException('AdminUsers model could not be loaded.');
         }
-        $this->Authentication->addUnauthenticatedActions(['index', 'edit']);
+        $this->Authentication->addUnauthenticatedActions(['index', 'edit', 'forgotPassword', 'sendResetEmail', 'resetPassword']);
     }
     
     /**
@@ -165,5 +174,89 @@ class AdminUsersController extends AppController
             $redirect = $this->request->getQuery('/Dashboard', ['controller' => 'Dashboard', 'action' => 'index']);
             return $this->redirect($redirect);
         }
+    }
+    
+    public function forgotPassword()
+    {
+        if ($this->request->is('post')) {
+            $email = $this->request->getData('email');
+
+            // Tìm người dùng với email này
+            $user = $this->AdminUsers->findByEmail($email)->first();
+
+            if ($user) {
+                // Tạo token cho người dùng này và lưu vào DB
+                $token = bin2hex(random_bytes(32));
+                $user->reset_password = $token;
+                $user->reset_password_expiry = date('Y-m-d H:i:s', strtotime('+1 hour'));
+
+                if ($this->AdminUsers->save($user)) {
+                    // Gửi email với liên kết để reset mật khẩu
+                    $this->sendResetEmail($user);
+                    $this->Flash->success('Vui lòng kiểm tra email để tiếp tục.');
+                } else {
+                    $this->Flash->error('Đã xảy ra lỗi, vui lòng thử lại.');
+                }
+            } else {
+                $this->Flash->error('Email không tồn tại trong hệ thống.');
+            }
+        }
+    }
+
+    private function sendResetEmail($user)
+    {
+
+        $email = new Mailer('default');
+        $email
+              ->setEmailFormat('html')
+              ->setTo($user->email)
+              ->setSubject('Reset password')
+              ->viewBuilder()
+                  ->setTemplate('reset_password');
+  
+             
+        $email->setViewVars(['token' => $user->reset_password]);
+        $email->send();
+
+    }
+    public function resetPassword($token = null)
+    {
+        if (!$token) {
+            throw new NotFoundException('Token không hợp lệ');
+        }
+    
+        // Tìm người dùng với token này
+        $user = $this->AdminUsers->find('all', [
+            'conditions' => [
+                'reset_password' => $token,
+                'reset_password_expiry >' => date('Y-m-d H:i:s')
+            ]
+        ])->first();
+        
+
+        if (!$user) {
+            $this->Flash->error('Token không hợp lệ hoặc đã hết hạn.');
+            return $this->redirect(['action' => 'forgotPassword']);
+        }
+    
+        if ($this->request->is('post')) {
+
+            $user = $this->AdminUsers->patchEntity($user, $this->request->getData());
+
+            if (!empty($user->password)) {
+                $user->password = (new DefaultPasswordHasher())->hash($user->password);
+            }
+            $user->reset_password = null;
+            $user->reset_password_expiry = null;
+    
+            if ($this->AdminUsers->save($user)) {
+                $this->Flash->success('Mật khẩu của bạn đã được đặt lại.');
+                return $this->redirect(['action' => 'login']);
+            } else {
+                $this->Flash->error('Đã xảy ra lỗi, vui lòng thử lại.');
+            }
+        }
+    
+        $this->set(compact('token'));
     }
 }

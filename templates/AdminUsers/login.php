@@ -12,5 +12,9 @@ ob_start();
     <?= $this->Form->control('email', ['required' => true]) ?>
     <?= $this->Form->control('password', ['required' => true]) ?>
 </fieldset>
+<div style="    display: flex;
+    justify-content: space-between;">
 <?= $this->Form->button(__('Login')) ?>
+<?= $this->Html->link('Quên mật khẩu', ['controller' => 'AdminUsers', 'action' => 'forgotPassword']) ?>
+</div>
 <?= $this->Form->end() ?>

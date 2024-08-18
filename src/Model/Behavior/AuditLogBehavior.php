@@ -14,22 +14,21 @@ class AuditLogBehavior extends Behavior
 
     public function beforeSave(EventInterface $event, $entity, ArrayObject $options)
     {
-        $ahihi = Router::getRequest();
-
-        $ahuhu = IdentityHelper::isPermission($ahihi);
-
-        // debug($ahuhu);
-        // die();
 
         $user = IdentityHelper::getIdentity();
 
         if ($entity->isNew()) {
             $entity->delete_flg = 0;
             $entity->created_at = TimeHelper::getCurrentTime();
-            $entity->created_by = $user->username;
+            if($user)
+            {
+                $entity->created_by = $user->username;
+            }
         }
         $entity->updated_at = TimeHelper::getCurrentTime();
-        $entity->updated_by = $user->username; 
-        
+        if($user)
+        {
+            $entity->updated_by = $user->username; 
+        }
     }
 }

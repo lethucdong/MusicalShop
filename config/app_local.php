@@ -82,14 +82,50 @@ return [
      *
      * See app.php for more configuration options.
      */
+    // 'EmailTransport' => [
+    //     'default' => [
+    //         'host' => 'localhost',
+    //         'port' => 25,
+    //         'username' => null,
+    //         'password' => null,
+    //         'client' => null,
+    //         'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),
+    //     ],
+    // ],
+
+    // 'EmailTransport' => [
+    //     'default' => [
+    //         'className' => 'Smtp',
+    //         'host' => 'smtp.gmail.com',  // Host cho Gmail SMTP
+    //         'port' => 587,               // Port cho Gmail SMTP
+    //         'username' => 'ledong9x001@gmail.com',  // Địa chỉ email của bạn
+    //         'password' => '0916874575Dong',  // Mật khẩu của email
+    //         'tls' => false,              // Bật TLS
+    //         'tls_verify_peer' => false, // Bật kiểm tra peer cho TLS
+    //     ],
+    // ],
     'EmailTransport' => [
+        // Sample Mail configuration
         'default' => [
-            'host' => 'localhost',
-            'port' => 25,
-            'username' => null,
-            'password' => null,
-            'client' => null,
-            'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),
+            'className' => 'Mail',
+        ],
+        // Sample SMTP configuration
+        'gmail' => [
+            'host' => 'smtp.gmail.com',
+            'port' => 587,
+            'username' => 'ledong9x@gmail.com',
+            'password' => 'yrst iavq etca lcdf',
+            'className' => 'Smtp',
+            'tls' => true
+        ]
+    ],
+
+    'Email' => [
+        'default' => [
+            'transport' => 'gmail',  // Sử dụng cấu hình 'default' từ EmailTransport
+            'from' => 'ledong9x@gmail.com',  // Địa chỉ email gửi
+            'charset' => 'utf-8',
+            'headerCharset' => 'utf-8',
         ],
     ],
 ];

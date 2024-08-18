@@ -75,7 +75,7 @@ class AppController extends Controller
         parent::beforeRender($event);
         $showSideBar = false;
         $user = $this->request->getAttribute('identity');
-        if (!in_array($this->request->getParam('action'),['login', 'register']) && in_array($this->request->getParam('controller'), Constants::SHOW_SIDEBAR_CONTROLLER))
+        if (!in_array($this->request->getParam('action'),['login', 'register', 'forgotPassword', 'resetPassword']) && in_array($this->request->getParam('controller'), Constants::SHOW_SIDEBAR_CONTROLLER))
         {
             $showSideBar = true;
         }

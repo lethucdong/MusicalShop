@@ -53,6 +53,8 @@ class InitData extends AbstractMigration
         $users
             ->addColumn('full_name', 'string', ['limit' => 255, 'null' => false, 'default' => null])
             ->addColumn('password', 'string', ['limit' => 255, 'null' => false, 'default' => null])
+            ->addColumn('reset_password', 'string', ['limit' => 255, 'null' => true, 'default' => null])
+            ->addColumn('reset_password_expiry', 'datetime', ['null' => true, 'default' => null])
             ->addColumn('birthday', 'datetime', ['null' => false, 'default' => null])
             ->addColumn('sex', 'integer', ['null' => false, 'default' => null])
             ->addColumn('email', 'string', ['limit' => 255, 'null' => false, 'default' => null])
@@ -71,6 +73,8 @@ class InitData extends AbstractMigration
         $adminUsers
             ->addColumn('username', 'string', ['limit' => 255, 'null' => false])
             ->addColumn('password', 'string', ['limit' => 255, 'null' => false])
+            ->addColumn('reset_password', 'string', ['limit' => 255, 'null' => true, 'default' => null])
+            ->addColumn('reset_password_expiry', 'datetime', ['null' => true, 'default' => null])
             ->addColumn('email', 'string', ['limit' => 255, 'null' => false])
             ->addColumn('birthday', 'datetime', ['null' => false])
             ->addColumn('sex', 'integer', ['limit' => 11, 'null' => false])
