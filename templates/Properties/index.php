@@ -18,7 +18,6 @@
             <thead>
                 <tr>
                     <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('product_id') ?></th>
                     <th><?= $this->Paginator->sort('name') ?></th>
                     <th><?= $this->Paginator->sort('value') ?></th>
                     <th><?= $this->Paginator->sort('created_at') ?></th>
@@ -33,7 +32,6 @@
                 <?php foreach ($properties as $property): ?>
                 <tr>
                     <td><?= $this->Number->format($property->id) ?></td>
-                    <td><?= $property->has('product') ? $this->Html->link($property->product->name, ['controller' => 'Products', 'action' => 'view', $property->product->id]) : '' ?></td>
                     <td><?= h($property->name) ?></td>
                     <td><?= h($property->value) ?></td>
                     <td><?= h($property->created_at) ?></td>

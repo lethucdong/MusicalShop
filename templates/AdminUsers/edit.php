@@ -25,7 +25,7 @@
                 <?php
                     echo $this->Form->control('username');
                     echo $this->Form->control('password');
-                    echo $this->Form->control('email');
+                    // echo $this->Form->control('email');
                     echo $this->Form->control('birthday');
                     echo $this->Form->control('sex');
                     echo $this->Form->control('phone');

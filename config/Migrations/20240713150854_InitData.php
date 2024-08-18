@@ -137,7 +137,6 @@ class InitData extends AbstractMigration
         // properties table
         $properties = $this->table('properties');
         $properties
-            ->addColumn('product_id', 'integer', ['null' => false])
             ->addColumn('name', 'string', ['limit' => 255, 'null' => false])
             ->addColumn('value', 'string', ['limit' => 255, 'null' => true, 'default' => null])
             ->addColumn('created_at', 'datetime', ['null' => false])
@@ -145,7 +144,19 @@ class InitData extends AbstractMigration
             ->addColumn('updated_at', 'datetime', ['null' => true, 'default' => null])
             ->addColumn('updated_by', 'string', ['limit' => 255, 'null' => true, 'default' => null])
             ->addColumn('delete_flg', 'boolean', ['null' => false, 'default' => 0])
+            ->create();
+
+        $productProperties = $this->table('product_properties');
+        $productProperties
+            ->addColumn('created_at', 'datetime', ['null' => false])
+            ->addColumn('created_by', 'string', ['limit' => 255, 'null' => false])
+            ->addColumn('updated_at', 'datetime', ['null' => true, 'default' => null])
+            ->addColumn('updated_by', 'string', ['limit' => 255, 'null' => true, 'default' => null])
+            ->addColumn('delete_flg', 'boolean', ['null' => false, 'default' => 0])
+            ->addColumn('product_id', 'integer', ['null' => false])
+            ->addColumn('properties_id', 'integer', ['null' => false])
             ->addForeignKey('product_id', 'products', 'id', ['delete' => 'CASCADE', 'update' => 'CASCADE'])
+            ->addForeignKey('properties_id', 'properties', 'id', ['delete' => 'CASCADE', 'update' => 'CASCADE'])
             ->create();
 
             // image_banners table
@@ -249,6 +260,7 @@ class InitData extends AbstractMigration
         $this->table('orders')->drop()->save();
         $this->table('cart_details')->drop()->save();
         $this->table('carts')->drop()->save();
+        $this->table('product_properties')->drop()->save();
         $this->table('properties')->drop()->save();
         $this->table('image_products')->drop()->save();
         $this->table('products')->drop()->save();

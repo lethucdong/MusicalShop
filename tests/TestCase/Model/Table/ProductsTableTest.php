@@ -30,7 +30,7 @@ class ProductsTableTest extends TestCase
         'app.CartDetails',
         'app.ImageProducts',
         'app.OrderDetails',
-        'app.Properties',
+        'app.ProductProperties',
     ];
 
     /**

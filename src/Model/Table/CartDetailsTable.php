@@ -31,6 +31,7 @@ use App\Model\Model\SearchTrait;
  */
 class CartDetailsTable extends Table
 {
+    use SearchTrait;
     /**
      * Initialize method
      *

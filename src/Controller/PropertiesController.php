@@ -25,7 +25,7 @@ class PropertiesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Products'],
+            'contain' => [],
         ];
         
         $search = $this->request->getQuery('search');
@@ -48,7 +48,7 @@ class PropertiesController extends AppController
     public function view($id = null)
     {
         $property = $this->Properties->get($id, [
-            'contain' => ['Products'],
+            'contain' => [],
         ]);
 
         $this->set(compact('property'));
@@ -64,7 +64,6 @@ class PropertiesController extends AppController
         $property = $this->Properties->newEmptyEntity();
         if ($this->request->is('post')) {
             $property = $this->Properties->patchEntity($property, $this->request->getData());
-
             if ($this->Properties->save($property)) {
                 $this->Flash->success(__('The property has been saved.'));
 
@@ -72,8 +71,7 @@ class PropertiesController extends AppController
             }
             $this->Flash->error(__('The property could not be saved. Please, try again.'));
         }
-        $products = $this->Properties->Products->find('list', ['limit' => 200])->all();
-        $this->set(compact('property', 'products'));
+        $this->set(compact('property'));
     }
 
     /**
@@ -97,8 +95,7 @@ class PropertiesController extends AppController
             }
             $this->Flash->error(__('The property could not be saved. Please, try again.'));
         }
-        $products = $this->Properties->Products->find('list', ['limit' => 200])->all();
-        $this->set(compact('property', 'products'));
+        $this->set(compact('property'));
     }
 
     /**

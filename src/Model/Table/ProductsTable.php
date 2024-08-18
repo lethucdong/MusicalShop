@@ -17,7 +17,7 @@ use App\Model\Model\SearchTrait;
  * @property \App\Model\Table\CartDetailsTable&\Cake\ORM\Association\HasMany $CartDetails
  * @property \App\Model\Table\ImageProductsTable&\Cake\ORM\Association\HasMany $ImageProducts
  * @property \App\Model\Table\OrderDetailsTable&\Cake\ORM\Association\HasMany $OrderDetails
- * @property \App\Model\Table\PropertiesTable&\Cake\ORM\Association\HasMany $Properties
+ * @property \App\Model\Table\ProductPropertiesTable&\Cake\ORM\Association\HasMany $ProductProperties
  *
  * @method \App\Model\Entity\Product newEmptyEntity()
  * @method \App\Model\Entity\Product newEntity(array $data, array $options = [])
@@ -67,7 +67,7 @@ class ProductsTable extends Table
         $this->hasMany('OrderDetails', [
             'foreignKey' => 'product_id',
         ]);
-        $this->hasMany('Properties', [
+        $this->hasMany('ProductProperties', [
             'foreignKey' => 'product_id',
         ]);
 

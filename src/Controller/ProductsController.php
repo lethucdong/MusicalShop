@@ -48,7 +48,7 @@ class ProductsController extends AppController
     public function view($id = null)
     {
         $product = $this->Products->get($id, [
-            'contain' => ['Categories', 'Brands', 'CartDetails', 'ImageProducts', 'OrderDetails', 'Properties'],
+            'contain' => ['Categories', 'Brands', 'CartDetails', 'ImageProducts', 'OrderDetails', 'ProductProperties'],
         ]);
 
         $this->set(compact('product'));

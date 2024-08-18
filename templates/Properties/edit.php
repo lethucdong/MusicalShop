@@ -1,3 +1,9 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ * @var \App\Model\Entity\Property $property
+ */
+?>
 <div class="row">
     <aside class="column">
         <div class="side-nav">
@@ -16,8 +22,13 @@
             <fieldset>
                 <legend><?= __('Edit Property') ?></legend>
                 <?php
-                    echo $this->Form->control('product_id', ['options' => $products]);
                     echo $this->Form->control('name');
+                    // echo $this->Form->control('value');
+                    // echo $this->Form->control('created_at');
+                    // echo $this->Form->control('created_by');
+                    // echo $this->Form->control('updated_at', ['empty' => true]);
+                    // echo $this->Form->control('updated_by');
+                    // echo $this->Form->control('delete_flg');
                 ?>
                 <div>
                     <label><?= __('Type') ?></label>

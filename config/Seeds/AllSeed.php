@@ -1274,7 +1274,6 @@ class AllSeed extends AbstractSeed
         $data = [
             [
                 'id' => 86,
-                'product_id' => 7,
                 'name' => 'White',
                 'value' => '#FFFFFF',
                 'created_at' => new \Cake\I18n\FrozenTime('2024-07-07 12:51:49'),
@@ -1285,7 +1284,6 @@ class AllSeed extends AbstractSeed
             ],
             [
                 'id' => 87,
-                'product_id' => 7,
                 'name' => 'Red',
                 'value' => '#FF0000',
                 'created_at' => new \Cake\I18n\FrozenTime('2024-07-07 12:51:49'),
@@ -1296,7 +1294,6 @@ class AllSeed extends AbstractSeed
             ],
             [
                 'id' => 88,
-                'product_id' => 7,
                 'name' => 'Yellow',
                 'value' => '#FFFF00',
                 'created_at' => new \Cake\I18n\FrozenTime('2024-07-07 13:26:37'),
@@ -1307,7 +1304,6 @@ class AllSeed extends AbstractSeed
             ],
             [
                 'id' => 89,
-                'product_id' => 7,
                 'name' => 'Gray',
                 'value' => '#808080',
                 'created_at' => new \Cake\I18n\FrozenTime('2024-07-07 12:51:49'),
@@ -1318,7 +1314,6 @@ class AllSeed extends AbstractSeed
             ],
             [
                 'id' => 90,
-                'product_id' => 8,
                 'name' => 'White',
                 'value' => '#FFFFFF',
                 'created_at' => new \Cake\I18n\FrozenTime('2024-07-07 12:51:49'),
@@ -1329,7 +1324,6 @@ class AllSeed extends AbstractSeed
             ],
             [
                 'id' => 91,
-                'product_id' => 8,
                 'name' => 'Red',
                 'value' => '#FF0000',
                 'created_at' => new \Cake\I18n\FrozenTime('2024-07-07 12:51:49'),
@@ -1340,7 +1334,6 @@ class AllSeed extends AbstractSeed
             ],
             [
                 'id' => 92,
-                'product_id' => 8,
                 'name' => 'Yellow',
                 'value' => '#FFFF00',
                 'created_at' => new \Cake\I18n\FrozenTime('2024-07-07 13:26:37'),
@@ -1351,7 +1344,6 @@ class AllSeed extends AbstractSeed
             ],
             [
                 'id' => 93,
-                'product_id' => 8,
                 'name' => 'Gray',
                 'value' => '#808080',
                 'created_at' => new \Cake\I18n\FrozenTime('2024-07-07 12:51:49'),
@@ -1362,7 +1354,6 @@ class AllSeed extends AbstractSeed
             ],
             [
                 'id' => 94,
-                'product_id' => 9,
                 'name' => 'M',
                 'value' => '151cmx121cmx63cm',
                 'created_at' => new \Cake\I18n\FrozenTime('2024-07-07 12:51:49'),
@@ -1373,7 +1364,6 @@ class AllSeed extends AbstractSeed
             ],
             [
                 'id' => 95,
-                'product_id' => 9,
                 'name' => 'L',
                 'value' => '161cmx131cmx73cm',
                 'created_at' => new \Cake\I18n\FrozenTime('2024-07-07 12:51:49'),
@@ -1384,7 +1374,6 @@ class AllSeed extends AbstractSeed
             ],
             [
                 'id' => 96,
-                'product_id' => 9,
                 'name' => 'XL',
                 'value' => '181cmx151cmx93cm',
                 'created_at' => new \Cake\I18n\FrozenTime('2024-07-07 13:26:37'),
@@ -1395,7 +1384,6 @@ class AllSeed extends AbstractSeed
             ],
             [
                 'id' => 97,
-                'product_id' => 10,
                 'name' => 'M',
                 'value' => '151cmx121cmx63cm',
                 'created_at' => new \Cake\I18n\FrozenTime('2024-07-07 12:51:49'),
@@ -1406,7 +1394,6 @@ class AllSeed extends AbstractSeed
             ],
             [
                 'id' => 98,
-                'product_id' => 10,
                 'name' => 'L',
                 'value' => '161cmx131cmx73cm',
                 'created_at' => new \Cake\I18n\FrozenTime('2024-07-07 12:51:49'),
@@ -1417,7 +1404,6 @@ class AllSeed extends AbstractSeed
             ],
             [
                 'id' => 99,
-                'product_id' => 10,
                 'name' => 'XL',
                 'value' => '181cmx151cmx93cm',
                 'created_at' => new \Cake\I18n\FrozenTime('2024-07-07 13:26:37'),
@@ -1428,7 +1414,6 @@ class AllSeed extends AbstractSeed
             ],
             [
                 'id' => 100,
-                'product_id' => 11,
                 'name' => '1/2',
                 'value' => '53cm-54,7cm',
                 'created_at' => new \Cake\I18n\FrozenTime('2024-07-07 12:51:49'),
@@ -1439,7 +1424,6 @@ class AllSeed extends AbstractSeed
             ],
             [
                 'id' => 101,
-                'product_id' => 11,
                 'name' => '1/4',
                 'value' => '47,2cm-48,7cm',
                 'created_at' => new \Cake\I18n\FrozenTime('2024-07-07 12:51:49'),
@@ -1450,7 +1434,6 @@ class AllSeed extends AbstractSeed
             ],
             [
                 'id' => 102,
-                'product_id' => 11,
                 'name' => '3/4',
                 'value' => '59,5cm-61,4cm',
                 'created_at' => new \Cake\I18n\FrozenTime('2024-07-07 13:26:37'),
@@ -1461,7 +1444,6 @@ class AllSeed extends AbstractSeed
             ],
             [
                 'id' => 103,
-                'product_id' => 11,
                 'name' => '4/4',
                 'value' => '63cm-65cm',
                 'created_at' => new \Cake\I18n\FrozenTime('2024-07-07 13:26:37'),
@@ -1472,7 +1454,6 @@ class AllSeed extends AbstractSeed
             ],
             [
                 'id' => 104,
-                'product_id' => 12,
                 'name' => '1/2',
                 'value' => '53cm-54,7cm',
                 'created_at' => new \Cake\I18n\FrozenTime('2024-07-07 12:51:49'),
@@ -1483,7 +1464,6 @@ class AllSeed extends AbstractSeed
             ],
             [
                 'id' => 105,
-                'product_id' => 12,
                 'name' => '1/4',
                 'value' => '47,2cm-48,7cm',
                 'created_at' => new \Cake\I18n\FrozenTime('2024-07-07 12:51:49'),
@@ -1494,7 +1474,6 @@ class AllSeed extends AbstractSeed
             ],
             [
                 'id' => 106,
-                'product_id' => 12,
                 'name' => '3/4',
                 'value' => '59,5cm-61,4cm',
                 'created_at' => new \Cake\I18n\FrozenTime('2024-07-07 13:26:37'),
@@ -1505,7 +1484,6 @@ class AllSeed extends AbstractSeed
             ],
             [
                 'id' => 107,
-                'product_id' => 12,
                 'name' => '4/4',
                 'value' => '63cm-65cm',
                 'created_at' => new \Cake\I18n\FrozenTime('2024-07-07 13:26:37'),

@@ -30,7 +30,7 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\CartDetail[] $cart_details
  * @property \App\Model\Entity\ImageProduct[] $image_products
  * @property \App\Model\Entity\OrderDetail[] $order_details
- * @property \App\Model\Entity\Property[] $properties
+ * @property \App\Model\Entity\ProductProperty[] $product_properties
  */
 class Product extends Entity
 {
@@ -64,6 +64,6 @@ class Product extends Entity
         'cart_details' => true,
         'image_products' => true,
         'order_details' => true,
-        'properties' => true,
+        'product_properties' => true,
     ];
 }

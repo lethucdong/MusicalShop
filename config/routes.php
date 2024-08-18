@@ -62,6 +62,7 @@ return function (RouteBuilder $routes): void {
         $builder->connect('/RolePermissions', ['controller' => 'RolePermissions', 'action' => 'index']);
         $builder->connect('/Properties', ['controller' => 'Properties', 'action' => 'index']);
         $builder->connect('/Products', ['controller' => 'Products', 'action' => 'index']);
+        $builder->connect('/ProductProperties', ['controller' => 'ProductProperties', 'action' => 'index']);
         $builder->connect('/Permissions', ['controller' => 'Permissions', 'action' => 'index']);
         $builder->connect('/OrderDetails', ['controller' => 'OrderDetails', 'action' => 'index']);
         $builder->connect('/ImageProducts', ['controller' => 'ImageProducts', 'action' => 'index']);

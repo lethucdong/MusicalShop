@@ -209,37 +209,35 @@
                 <?php endif; ?>
             </div>
             <div class="related">
-                <h4><?= __('Related Properties') ?></h4>
-                <?php if (!empty($product->properties)) : ?>
+                <h4><?= __('Related Product Properties') ?></h4>
+                <?php if (!empty($product->product_properties)) : ?>
                 <div class="table-responsive">
                     <table>
                         <tr>
                             <th><?= __('Id') ?></th>
-                            <th><?= __('Product Id') ?></th>
-                            <th><?= __('Name') ?></th>
-                            <th><?= __('Value') ?></th>
                             <th><?= __('Created At') ?></th>
                             <th><?= __('Created By') ?></th>
                             <th><?= __('Updated At') ?></th>
                             <th><?= __('Updated By') ?></th>
                             <th><?= __('Delete Flg') ?></th>
+                            <th><?= __('Product Id') ?></th>
+                            <th><?= __('Properties Id') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
-                        <?php foreach ($product->properties as $properties) : ?>
+                        <?php foreach ($product->product_properties as $productProperties) : ?>
                         <tr>
-                            <td><?= h($properties->id) ?></td>
-                            <td><?= h($properties->product_id) ?></td>
-                            <td><?= h($properties->name) ?></td>
-                            <td><?= h($properties->value) ?></td>
-                            <td><?= h($properties->created_at) ?></td>
-                            <td><?= h($properties->created_by) ?></td>
-                            <td><?= h($properties->updated_at) ?></td>
-                            <td><?= h($properties->updated_by) ?></td>
-                            <td><?= h($properties->delete_flg) ?></td>
+                            <td><?= h($productProperties->id) ?></td>
+                            <td><?= h($productProperties->created_at) ?></td>
+                            <td><?= h($productProperties->created_by) ?></td>
+                            <td><?= h($productProperties->updated_at) ?></td>
+                            <td><?= h($productProperties->updated_by) ?></td>
+                            <td><?= h($productProperties->delete_flg) ?></td>
+                            <td><?= h($productProperties->product_id) ?></td>
+                            <td><?= h($productProperties->properties_id) ?></td>
                             <td class="actions">
-                                <?= $this->Html->link(__('View'), ['controller' => 'Properties', 'action' => 'view', $properties->id]) ?>
-                                <?= $this->Html->link(__('Edit'), ['controller' => 'Properties', 'action' => 'edit', $properties->id]) ?>
-                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'Properties', 'action' => 'delete', $properties->id], ['confirm' => __('Are you sure you want to delete # {0}?', $properties->id)]) ?>
+                                <?= $this->Html->link(__('View'), ['controller' => 'ProductProperties', 'action' => 'view', $productProperties->id]) ?>
+                                <?= $this->Html->link(__('Edit'), ['controller' => 'ProductProperties', 'action' => 'edit', $productProperties->id]) ?>
+                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'ProductProperties', 'action' => 'delete', $productProperties->id], ['confirm' => __('Are you sure you want to delete # {0}?', $productProperties->id)]) ?>
                             </td>
                         </tr>
                         <?php endforeach; ?>

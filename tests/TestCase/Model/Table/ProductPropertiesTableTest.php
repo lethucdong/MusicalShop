@@ -3,20 +3,20 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\PropertiesTable;
+use App\Model\Table\ProductPropertiesTable;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\PropertiesTable Test Case
+ * App\Model\Table\ProductPropertiesTable Test Case
  */
-class PropertiesTableTest extends TestCase
+class ProductPropertiesTableTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \App\Model\Table\PropertiesTable
+     * @var \App\Model\Table\ProductPropertiesTable
      */
-    protected $Properties;
+    protected $ProductProperties;
 
     /**
      * Fixtures
@@ -24,8 +24,9 @@ class PropertiesTableTest extends TestCase
      * @var array<string>
      */
     protected $fixtures = [
-        'app.Properties',
         'app.ProductProperties',
+        'app.Products',
+        'app.Properties',
     ];
 
     /**
@@ -36,8 +37,8 @@ class PropertiesTableTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $config = $this->getTableLocator()->exists('Properties') ? [] : ['className' => PropertiesTable::class];
-        $this->Properties = $this->getTableLocator()->get('Properties', $config);
+        $config = $this->getTableLocator()->exists('ProductProperties') ? [] : ['className' => ProductPropertiesTable::class];
+        $this->ProductProperties = $this->getTableLocator()->get('ProductProperties', $config);
     }
 
     /**
@@ -47,7 +48,7 @@ class PropertiesTableTest extends TestCase
      */
     protected function tearDown(): void
     {
-        unset($this->Properties);
+        unset($this->ProductProperties);
 
         parent::tearDown();
     }
@@ -56,7 +57,7 @@ class PropertiesTableTest extends TestCase
      * Test validationDefault method
      *
      * @return void
-     * @uses \App\Model\Table\PropertiesTable::validationDefault()
+     * @uses \App\Model\Table\ProductPropertiesTable::validationDefault()
      */
     public function testValidationDefault(): void
     {
@@ -64,12 +65,12 @@ class PropertiesTableTest extends TestCase
     }
 
     /**
-     * Test findSearch method
+     * Test buildRules method
      *
      * @return void
-     * @uses \App\Model\Table\PropertiesTable::findSearch()
+     * @uses \App\Model\Table\ProductPropertiesTable::buildRules()
      */
-    public function testFindSearch(): void
+    public function testBuildRules(): void
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

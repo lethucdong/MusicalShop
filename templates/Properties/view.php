@@ -19,10 +19,6 @@
             <h3><?= h($property->name) ?></h3>
             <table>
                 <tr>
-                    <th><?= __('Product') ?></th>
-                    <td><?= $property->has('product') ? $this->Html->link($property->product->name, ['controller' => 'Products', 'action' => 'view', $property->product->id]) : '' ?></td>
-                </tr>
-                <tr>
                     <th><?= __('Name') ?></th>
                     <td><?= h($property->name) ?></td>
                 </tr>

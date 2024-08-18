@@ -3,16 +3,16 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Controller;
 
-use App\Controller\ProductsController;
+use App\Controller\ProductPropertiesController;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Controller\ProductsController Test Case
+ * App\Controller\ProductPropertiesController Test Case
  *
- * @uses \App\Controller\ProductsController
+ * @uses \App\Controller\ProductPropertiesController
  */
-class ProductsControllerTest extends TestCase
+class ProductPropertiesControllerTest extends TestCase
 {
     use IntegrationTestTrait;
 
@@ -22,20 +22,16 @@ class ProductsControllerTest extends TestCase
      * @var array<string>
      */
     protected $fixtures = [
-        'app.Products',
-        'app.Categories',
-        'app.Brands',
-        'app.CartDetails',
-        'app.ImageProducts',
-        'app.OrderDetails',
         'app.ProductProperties',
+        'app.Products',
+        'app.Properties',
     ];
 
     /**
      * Test index method
      *
      * @return void
-     * @uses \App\Controller\ProductsController::index()
+     * @uses \App\Controller\ProductPropertiesController::index()
      */
     public function testIndex(): void
     {
@@ -46,7 +42,7 @@ class ProductsControllerTest extends TestCase
      * Test view method
      *
      * @return void
-     * @uses \App\Controller\ProductsController::view()
+     * @uses \App\Controller\ProductPropertiesController::view()
      */
     public function testView(): void
     {
@@ -57,7 +53,7 @@ class ProductsControllerTest extends TestCase
      * Test add method
      *
      * @return void
-     * @uses \App\Controller\ProductsController::add()
+     * @uses \App\Controller\ProductPropertiesController::add()
      */
     public function testAdd(): void
     {
@@ -68,7 +64,7 @@ class ProductsControllerTest extends TestCase
      * Test edit method
      *
      * @return void
-     * @uses \App\Controller\ProductsController::edit()
+     * @uses \App\Controller\ProductPropertiesController::edit()
      */
     public function testEdit(): void
     {
@@ -79,7 +75,7 @@ class ProductsControllerTest extends TestCase
      * Test delete method
      *
      * @return void
-     * @uses \App\Controller\ProductsController::delete()
+     * @uses \App\Controller\ProductPropertiesController::delete()
      */
     public function testDelete(): void
     {

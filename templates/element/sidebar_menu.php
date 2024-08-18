@@ -7,6 +7,7 @@
         <li><?= $this->Html->link('RolePermissions', ['controller' => 'RolePermissions', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link('Properties', ['controller' => 'Properties', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link('Products', ['controller' => 'Products', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link('ProductProperties', ['controller' => 'ProductProperties', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link('Permissions', ['controller' => 'Permissions', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link('OrderDetails', ['controller' => 'OrderDetails', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link('ImageProducts', ['controller' => 'ImageProducts', 'action' => 'index']) ?></li>

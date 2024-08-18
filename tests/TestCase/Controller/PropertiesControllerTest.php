@@ -23,7 +23,6 @@ class PropertiesControllerTest extends TestCase
      */
     protected $fixtures = [
         'app.Properties',
-        'app.Products',
     ];
 
     /**
