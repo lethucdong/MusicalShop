@@ -1,4 +1,21 @@
 <?php
+//----------------------------------------------------------------------------
+//
+//  Project name    : Musical Shop
+//  Class Name      : DashboardController
+//  Overview        : Cung cấp cái nhìn tổng quan và báo cáo cho quản trị viên.
+//  Programmer      : DongLT
+//  Created Date    : 2024/07/14
+//  Version         : 0.0.0.1
+//
+//----------< History >--------------------------------------------------------
+//  ID              : 
+//  Programmer      : 
+//  Updated Date    : 
+//  Comment         : 
+//  Version         :  
+//-----------------------------------------------------------------------------
+
 namespace App\Controller;
 
 use Cake\ORM\Table;

@@ -1,4 +1,21 @@
 <?php
+//----------------------------------------------------------------------------
+//
+//  Project name    : Musical Shop
+//  Class Name      : edit
+//  Overview        : Thay đổi thông tin thương hiệu (View)
+//  Programmer      : DongLT
+//  Created Date    : 2024/07/14
+//  Version         : 0.0.0.1
+//
+//----------< History >--------------------------------------------------------
+//  ID              : 
+//  Programmer      : 
+//  Updated Date    : 
+//  Comment         : 
+//  Version         :  
+//-----------------------------------------------------------------------------
+
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Brand $brand

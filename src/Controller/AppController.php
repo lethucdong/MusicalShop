@@ -1,4 +1,21 @@
 <?php
+//----------------------------------------------------------------------------
+//
+//  Project name    : Musical Shop
+//  Class Name      : AppController
+//  Overview        : Controller cơ sở cho tất cả các controller khác, chứa các thiết lập và chức năng chung.
+//  Programmer      : DongLT
+//  Created Date    : 2024/07/14
+//  Version         : 0.0.0.1
+//
+//----------< History >--------------------------------------------------------
+//  ID              : 
+//  Programmer      : 
+//  Updated Date    : 
+//  Comment         : 
+//  Version         :  
+//-----------------------------------------------------------------------------
+
 declare(strict_types=1);
 /**
  * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)

@@ -1,4 +1,21 @@
 <?php
+//----------------------------------------------------------------------------
+//
+//  Project name    : Musical Shop
+//  Class Name      : PropertiesController
+//  Overview        : Quản lý thuộc tính sản phẩm.
+//  Programmer      : DongLT
+//  Created Date    : 2024/07/14
+//  Version         : 0.0.0.1
+//
+//----------< History >--------------------------------------------------------
+//  ID              : 
+//  Programmer      : 
+//  Updated Date    : 
+//  Comment         : 
+//  Version         :  
+//-----------------------------------------------------------------------------
+
 declare(strict_types=1);
 
 namespace App\Controller;

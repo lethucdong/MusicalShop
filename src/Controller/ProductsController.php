@@ -1,4 +1,21 @@
 <?php
+//----------------------------------------------------------------------------
+//
+//  Project name    : Musical Shop
+//  Class Name      : ProductsController
+//  Overview        : Quản lý sản phẩm trong cửa hàng.
+//  Programmer      : DongLT
+//  Created Date    : 2024/07/14
+//  Version         : 0.0.0.1
+//
+//----------< History >--------------------------------------------------------
+//  ID              : 
+//  Programmer      : 
+//  Updated Date    : 
+//  Comment         : 
+//  Version         :  
+//-----------------------------------------------------------------------------
+
 declare(strict_types=1);
 
 namespace App\Controller;

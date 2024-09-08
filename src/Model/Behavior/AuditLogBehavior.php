@@ -1,5 +1,21 @@
 <?php
-// src/Model/Behavior/AuditLogBehavior.php
+//----------------------------------------------------------------------------
+//
+//  Project name    : Musical Shop
+//  Class Name      : AuditLogBehavior
+//  Overview        : 
+//  Programmer      : DongLT
+//  Created Date    : 2024/07/14
+//  Version         : 0.0.0.1
+//
+//----------< History >--------------------------------------------------------
+//  ID              : 
+//  Programmer      : 
+//  Updated Date    : 
+//  Comment         : 
+//  Version         :  
+//-----------------------------------------------------------------------------
+
 namespace App\Model\Behavior;
 
 use Cake\ORM\Behavior;
